@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        link(type="text/css", rel="stylesheet", href="/css/main.css", media="screen")
+        title Social Media
+    body
+        nav
+            #nav-wrapper
+                .item
+                    a(href="/")
+                        i.material-icons home
+                    span Go to Home
+                    input#fs(type="text", placeholder="Search")
+                    i.material-icons search
+                .item
+                    .icon-dropdown
+                        if (data.friends.received.length > 0)
+                            .badge data.friends.received.length
+                        i.material-icons#pico people
+                        .dropdown
+                            p Friend Requests
+                            if (data.friends.received.length > 0)
+                                ul#people
+                                    li
+                                        a.dp(href="#")
+                                            img(src="/images/bdp.png")
+                                        .frd
+                                            a(href="#") Krish Cool
+                                            span Mutual Friends : 1
+                                        span.accept-reject
+                                            i.material-icons done
+                                            i.material-icons cancel
+                                    li
+                                        a.dp(href="#")
+                                            img(src="/images/bdp.png")
+                                        .frd
+                                            a(href="#") Krishnendu Saha
+                                            span Mutual Friends : 1
+                                        span.accept-reject
+                                            i.material-icons done
+                                            i.material-icons cancel
+                                    li
+                                        a.dp(href="#")
+                                            img(src="/images/bdp.png")
+                                        .frd
+                                            a(href="#") Amrita Dutta
+                                            span Mutual Friends : 1
+                                        span.accept-reject
+                                            i.material-icons done
+                                            i.material-icons cancel
+                                    li
+                                        a.dp(href="#")
+                                            img(src="/images/bdp.png")
+                                        .frd
+                                            a(href="#") Delmalya Chakraborty
+                                            span Mutual Friends : 1
+                                        span.accept-reject
+                                            i.material-icons done
+                                            i.material-icons cancel
+                            else
+                                .empty
+                                    p No Pending Requests
+                            .see-all
+                                a(href="#") See All Friends Events
+                    
+                    .icon-dropdown
+                        .badge 2
+                        i.material-icons#chico chat
+                        .dropdown
+                            p
+                                span Recent Chats/Messages
+                                a(href="#")
+                                    span New Message
+                            ul#chats
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        a(href="#") Amrita Dutta
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        a(href="#") Krishnendu Saha
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                            .empty
+                                p No Recent Chats
+                            .see-all
+                                a(href="#") See All Chats/Messages
+
+                    .icon-dropdown
+                        .badge 8
+                        i.material-icons#notico notifications_active
+                        .dropdown
+                            p
+                                span Notifications
+                            ul#notify
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                            .empty
+                                p No Recent Notifications
+                            .see-all
+                                a(href="#") See All Notifications
+
+                    .pf-dropdown
+                        a(href="/profile")
+                            if (data.minimage)
+                                img(src="data:" + data.minimage.contentType + ";base64," + data.minimage.data)
+                            else
+                                img(src="/images/bdp.png")
+                            span=data.firstName
+                            i.material-icons arrow_drop_down
+                        .pf-dropdown-menu
+                            p YOUR ACCOUNT
+                            a(href="settings")
+                                p Profile Settings
+                            a(href="logout")
+                                p Logout
+
+        header
+            .container
+                .cover
+                    img(src="/images/blank_cover.jpg")
+                .options
+                    #opt_lt
+                        ul
+                            li
+                                a.active Timeline
+                            li
+                                a(href="#") About
+                            li
+                                a(href="#") Friends
+                    #opt_rt
+                        ul
+                            li
+                                a(href="#") Photos
+                            li
+                                a(href="#") Videos
+                            li
+                                a(href="#") Block
+                    if (!data.email)
+                        #control_block
+                            button(type="button") Already Friends
+                            button(type="button") Remove Friend
+                            button(type="button") Message
+                .photo
+                    if (data.image)
+                        img(src="data:" + data.image.contentType + ";base64," + data.image.data)
+                    else
+                        img(src="/images/bdp.png")
+                    span #{data.firstName} #{data.lastName}
+        
+        section
+            .sidebar
+                .inner
+                    ul
+                        li
+                            p.heading
+                                span About
+                                a(href="#") Edit Profile
+                            p.pfinfo Lives in Kolkata
+                            p.pfinfo Studied at School
+                            p.pfinfo Works at Office
+                        li
+                            p.heading
+                                span Friends (10)
+                                a(href="#") Find Friends
+                            .pfcon
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                    .spacer
+                                    a(href="#") Krish Cool
+                            p.pfbar
+                                a(href="#") Show All Friends
+                        li
+                            p.heading
+                                span Photos (10)
+                                a(href="#") See All
+                            .pfcon
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                                .item
+                                    a(href="#")
+                                        img(src="/images/bdp.png")
+                            .spacer
+                                
+            .content
+                ul
+                    li.status
+                        p
+                            span
+                                i.material-icons speaker_notes
+                                | Create Post
+                        #postarea
+                            .item
+                                a(href="/profile")
+                                    if (data.minimage)
+                                        img(src="data:" + data.minimage.contentType + ";base64," + data.minimage.data)
+                                    else
+                                        img(src="/images/bdp.png")
+                            .item
+                                textarea(placeholder="Share your thoughts!")
+                        p#postbtn
+                            span
+                                i.material-icons add_a_photo
+                                | Add Photos
+                            span
+                                i.material-icons person_add
+                                | Tag Friends
+                            span Post Status
+                    li.post
+                        .header
+                            .item
+                                a.dp(href="#")
+                                    img(src="/images/bdp.png")
+                            .item
+                                a(href="#") Krishnendu Saha
+                                span 10 days ago
+                        .body
+                            .item
+                                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ad debitis neque voluptatem exercitationem delectus quaerat sequi itaque maxime perferendis eligendi odio sint aperiam impedit repudiandae? Quis dignissimos porro repudiandae!
+                            .item
+                                img(src="/images/blank_cover.jpg")
+                        .footer
+                            .item
+                                span
+                                    i.material-icons favorite_border
+                                    | 5 hearts
+                            .item
+                                span
+                                    i.material-icons insert_comment
+                                    | 2 Comments
+                            .item
+                                span
+                                    i.material-icons share
+                                    | Share Post
+                        
+                    li.post
+                        .header
+                            .item
+                                a.dp(href="#")
+                                    img(src="/images/bdp.png")
+                            .item
+                                a(href="#") Krishnendu Saha
+                                span 10 days ago
+                        .body
+                            
+                            .item
+                                img(src="/images/blank_cover.jpg")
+                        .footer
+                            .item
+                                span
+                                    i.material-icons favorite_border
+                                    | 5 hearts
+                            .item
+                                span
+                                    i.material-icons insert_comment
+                                    | 2 Comments
+                            .item
+                                span
+                                    i.material-icons share
+                                    | Share Post
+                        
+                    li.post
+                        .header
+                            .item
+                                a.dp(href="#")
+                                    img(src="/images/bdp.png")
+                            .item
+                                a(href="#") Krishnendu Saha
+                                span 10 days ago
+                        .body
+                            .item
+                                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ad debitis neque voluptatem exercitationem delectus quaerat sequi itaque maxime perferendis eligendi odio sint aperiam impedit repudiandae? Quis dignissimos porro repudiandae!
+                            
+                        .footer
+                            .item
+                                span
+                                    i.material-icons favorite_border
+                                    | 5 hearts
+                            .item
+                                span
+                                    i.material-icons insert_comment
+                                    | 2 Comments
+                            .item
+                                span
+                                    i.material-icons share
+                                    | Share Post
+                        
+
+        footer
+
+
+
+        script(type="text/javascript", src="/js/jquery-3.3.1.min.js")
+        script(type="text/javascript", src="/js/profile.js")

@@ -1,0 +1,138 @@
+
+body {
+    background: #4285f4;
+}
+
+.valign-wrapper {
+    height: 100vh;
+}
+
+.tabs {
+    margin-top: 20px;
+}
+
+.tab a {
+    color: #000 !important;
+    font-weight: 600;
+    font-size: 18px !important;
+}
+
+.tab a:hover {
+    background-color: #21b5ff !important;
+    color: #fff !important;
+}
+
+.tabs .indicator {
+    background-color: #21b5ff !important;
+}
+
+.tab a.active {
+    background-color: #21b5ff !important;
+    color: #fff !important;
+}
+
+h3 {
+    margin-bottom: 25px;
+}
+
+form {
+    margin-top: 25px;
+}
+
+form .row {
+    margin: 0;
+}
+
+form.offset-s05 {
+    margin-left: 4.166667% !important;
+}
+
+.input-field input:focus + label {
+    color: #4285f4 !important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #4285f4 !important;
+    box-shadow: 0 1px 0 0 #4285f4 !important;
+    padding-left: 10px;
+}
+
+.input-field .prefix.active {
+    color: #4285f4;
+}
+
+label {
+    padding-left: 10px;
+}
+
+#log, #reg {
+    border-radius: 20px;
+    background-color: #4285f4 !important;
+    font-size: 18px;
+    margin: 10px auto;
+}
+
+.loader {
+    display: none;
+}
+
+#err {
+    color: #f0470f;
+    font-weight: 700;
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+#suc {
+    color: #55AF19;
+    font-weight: 700;
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+@media only screen and (min-width: 992px) {
+    
+    .container {
+        width: 85%;
+    }
+
+    .tabs {
+        display: flex;
+    }
+
+    .tabs, .tab {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 900px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    h3 {
+        font-size: 2rem;
+    }
+
+    .tab a {
+        color: #000 !important;
+        font-weight: 600;
+        font-size: 16px !important;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        width: 400px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .valign-wrapper {
+        height: auto;
+        margin-top: 50px;
+    }
+}

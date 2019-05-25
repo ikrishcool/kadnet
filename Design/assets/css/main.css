@@ -1,0 +1,919 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 100%;
+    background-color: #edf2f6;
+}
+
+nav {
+    background-color: #3f4257;
+    /* background-color: #4285f4; */
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    font-size: 22px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+#nav-wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-wrapper .item:first-child a {
+    color: #fff;
+}
+
+#nav-wrapper input {
+    margin-left: 20px;
+    padding: 5px 10px;
+    font-size: 100%;
+    width: 28vw;
+}
+
+#fs + i:hover {
+    color: #38a9ff;
+}
+
+#nav-wrapper img {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    vertical-align: middle;
+    top: -2px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+i.material-icons {
+    position: relative;
+    vertical-align: middle;
+    top: -2px;
+    font-size: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.badge {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    background-color: #7c5ac2;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    top: 7px;
+    right: 3px;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.dropdown a {
+    text-decoration: none;
+    color: #515365;
+}
+
+.icon-dropdown {
+    display: inline-block;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.dropdown {
+    display: block;
+    position: absolute;
+    width: 400px;
+    top: calc(100% - 5px);
+    right: -170px;
+    background-color: #fff;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0 0 34px 0 rgba(63,66,87,.1);
+    transition: visibility 0.3s linear, opacity .3s linear;
+}
+
+.dropdown::before, .dropdown::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+    left: 50%;
+}
+
+#pico:hover + .dropdown, .dropdown:hover {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+.dropdown p, .pf-dropdown-menu p {
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 700;
+    padding: 10px 20px;
+    letter-spacing: 0.7px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: #9a9fbf;
+    border-bottom: 1px solid #e6ecf5;
+}
+
+.dropdown p a:hover {
+    color: #38a9ff;
+}
+
+#people, #chats, #notify {
+    list-style: none;
+}
+
+#people li, #chats li, #notify li {
+    padding: 10px 25px;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #e6ecf5;
+    transition: all .3s ease;
+}
+
+#people li > *, #chats li > *, #notify li > * {
+    display: inline-block;
+}
+
+#people .dp, #chats .dp, #notify .dp {
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    vertical-align: middle;
+    position: unset;
+}
+
+#people .dp img, #chats .dp img, #notify .dp img {
+    margin: 0;
+}
+
+#people .frd, #chats .msg, #notify .msg {
+    width: 60%;
+    color: #515365;
+    line-height: 100%;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#people .frd a, #chats .msg a {
+    font-size: 16px;
+    display: block;
+    font-weight: 700;
+    line-height: 16px;
+}
+
+#people .frd a:hover, #chats .msg a:hover {
+    color: #38a9ff;
+}
+
+#people .frd span, #chats .msg span, #notify .msg span {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+#people span.accept-reject {
+    vertical-align: middle;
+    line-height: 36px;
+}
+
+#people span.accept-reject i {
+    width: 35px;
+    color: #515365;
+    height: 35px;
+    line-height: 35px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+#people span.accept-reject i:first-child:hover {
+    color: #4757d0;
+    font-weight: 900;
+}
+
+#people span.accept-reject i:nth-child(2):hover {
+    color: #ff1313;
+    font-weight: 900;
+}
+
+.empty p {
+    color: #4757d0;
+    display: block;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 20px 0;
+}
+
+.see-all {
+    background-color: #38a9ff;
+    border-radius: 0px 0px 5px 5px;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    transition: all .3s ease;
+}
+
+.see-all a {
+    color: #fff;
+    text-transform: capitalize;
+    vertical-align: middle;
+}
+
+.see-all a:hover {
+    text-decoration: underline;
+    font-size: 18px;
+    transition: all .3s ease;
+}
+
+#chico:hover + .dropdown, .dropdown:hover {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+#notico:hover + .dropdown, .dropdown:hover {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+#chats li, #notify li {
+    padding: 20px;
+}
+
+#chats .dp img, #notify .dp img {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+}
+
+#chats .msg, #notify .msg {
+    width: 80%;
+}
+
+#chats .msg span, #notify .msg span {
+    display: block;
+    padding-top: 10px;
+    color: #888da8;
+    font-weight: 400;
+}
+
+.pf-dropdown {
+    display: unset;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.pf-dropdown > a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 50px;
+}
+
+.pf-dropdown a:hover + .pf-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+.pf-dropdown-menu {
+    width: 250px;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: #fff;
+    padding-bottom: 10px;
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 34px 0 rgba(63,66,87,.1);
+    transition: visibility 0.3s linear, opacity .3s linear;
+}
+
+.pf-dropdown-menu:hover {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+.pf-dropdown-menu::before, .pf-dropdown-menu::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+    right: 18px;
+}
+
+.pf-dropdown-menu a {
+    text-decoration: none;
+}
+
+.pf-dropdown-menu a p {
+    color: #515365;
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 14px;
+    border: 0;
+}
+
+.pf-dropdown-menu a:hover p {
+    background-color: #38a9ff;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Profile Header */
+
+header {
+    max-width: 1300px;
+    margin: 110px auto 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #e6ecf5;
+}
+
+header .container, header .cover {
+    position: relative;
+}
+
+header .cover img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    vertical-align: middle;
+}
+
+header .cover:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 -120px 55px -30px rgba(0,0,0,.5);
+}
+
+header .options {
+    padding: 40px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+header #opt_lt, header #opt_rt {
+    width: 40%;    
+}
+
+header .options ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header .options a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #9a9fbf;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+header .options .active, header .options a:hover {
+    color: #515365;
+}
+
+header #control_block {
+    position: absolute;
+    right: 40px;
+    top: -60px;
+}
+
+header #control_block button {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    outline: 0;
+    border: 0;
+    background-color: #fff;
+    color: #515365;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+header #control_block button:active {
+    background-color: #38a9ff;
+    color: #fff;
+}
+
+header .photo {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    bottom: 15px;
+    text-align: center;
+    max-width: 15%;
+    z-index: 5;
+}
+
+header .photo img {
+    width: 155px;
+    height: 155px;
+    border-radius: 100%;
+    border: 6px solid #fff;
+}
+
+header .photo span {
+    display: block;
+    font-weight: 700;
+    font-size: 18px;
+    color: #515365;
+}
+
+/* Profile Header */
+
+/* Profile Body */
+
+section {
+    max-width: 1300px;
+    background-color: #edf2f6;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+section .sidebar {
+    flex: 1;
+}
+
+section .content {
+    flex: 2;
+}
+
+section ul {
+    list-style: none;
+}
+
+section ul li {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.sidebar ul {
+    margin-right: 20px;
+}
+
+.sidebar ul li, .content ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar .heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+    color: #515365;
+    border-bottom: 1px solid #e6ecf5;
+    padding: 20px 0;
+    margin-bottom: 15px;
+}
+
+.sidebar .heading a, .sidebar .pfbar a {
+    text-decoration: none;
+    color: #9a9fbf;
+}
+
+.sidebar .heading a:hover, .sidebar .pfbar a:hover {
+    color: #515365;
+    text-decoration: underline;
+}
+
+.sidebar .pfinfo {
+    padding: 10px 0;
+}
+
+.sidebar .pfcon {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1.5em;
+    text-align: center;
+}
+
+.sidebar .pfcon img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 6px solid #9a9fbf;
+}
+
+.sidebar .pfcon a {
+    color: #515365;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.sidebar .pfcon a:hover {
+    font-weight: 700;
+}
+
+.sidebar .spacer {
+    height: 10px;
+}
+
+.sidebar .pfbar {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px 0 10px;
+    border-top: 1px solid #e6ecf5;
+}
+
+.sidebar .pfbar a {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Settings */
+
+#settings .sidebar {
+    flex: 0.6;
+}
+
+#settings .sidebar li a {
+    text-decoration: none;
+    display: block;
+    color: #515365;
+    margin: 20px 0;
+}
+
+#settings .sidebar li a:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#settings .sidebar a.active {
+    font-weight: 700;
+}
+
+#settings .content li {
+    padding: 0;
+}
+
+#settings .content li p {
+    font-size: 18px;
+    color: #515365;
+    font-weight: 700;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e6ecf5;
+}
+
+#settings .content form {
+    padding: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button, input[type=number] { 
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    margin: 0;
+}
+
+#settings .content form .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#settings .content form .row:last-child {
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+#settings .content form .s6 {
+    width: 48%;
+}
+
+#settings .content form .s12 {
+    width: 100%;
+}
+
+#settings .content form .input-group {
+    position: relative;
+}
+
+#settings .content form .form-control {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 1.5rem 1.1rem .5rem;
+    line-height: 1.75;
+    color: #515365;
+    font-size: 16px;
+    border: 1px solid #e6ecf5;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+#settings .content form .form-control + label {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    color: #515365;
+    transition: all .2s ease-out;
+}
+
+#settings .content form .form-control:focus {
+    outline: none;
+    border-width: 2px;
+    border-color: #38a9ff;
+    transition: all .2s ease-out;
+}
+
+#settings .content form .form-control:focus + label, #settings .content form .form-control.has-value + label {
+    top: 10px;
+    color: #38a9ff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#settings .content form .form-control.has-value:not(:focus) + label {
+    color: #515365;
+}
+
+#settings .content form option {
+    padding: 5px 10px;
+}
+
+#settings .content form span {
+    font-size: 14px;
+    color: #ff1313;
+    padding: 5px 20px;
+    display: none;
+}
+
+#settings .content form button {
+    background-color: #38a9ff;
+    color: #fff;
+    text-align: center;
+    width: 50%;
+    padding: 15px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease-out;
+}
+
+#settings .content form button:hover {
+    opacity: 0.9;
+    font-size: 18px;
+}
+
+/* Settings */
+
+
+.content .status {
+    background-color: #edf2f6;
+    padding: 0;
+}
+
+.content .status p {
+    background-color: #fff;
+    padding: 20px;
+    width: fit-content;
+    border: 1px solid #e6ecf5;
+    border-bottom: none;
+    color: #515365;
+    font-size: 18px;
+}
+
+.content .status p:first-child i.material-icons {
+    top: 0;
+}
+
+.content .status p:first-child span:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.content .status p:first-child span:hover i.material-icons {
+    color: #38a9ff;
+}
+
+#postarea {
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+}
+
+#postarea .item:first-child {
+    width: 10%;
+    text-align: center;
+}
+
+#postarea .item:nth-child(2) {
+    width: 90%;
+    height: 150px;
+}
+
+#postarea img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+#postarea textarea {
+    resize: none;
+    font-size: 18px;
+    color: #515365;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+#postbtn {
+    background-color: #fff;
+    border: none;
+    border-top: 1px solid #e6ecf5;
+    width: 100%;
+    display: flex;
+}
+
+#postbtn i.material-icons {
+    top: -2px;
+    font-size: 25px;
+}
+
+#postbtn span {
+    padding: 10px;
+    padding-right: 20px;
+    border-radius: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#postbtn span:hover {
+    background-color: #38a9ff;
+    color: #fff;
+}
+
+#postbtn span:nth-child(3) {
+    background-color: #38a9ff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5%;
+    margin-left: auto;
+}
+
+.post {
+    padding: 30px 40px;
+}
+
+.post .header {
+    display: flex;
+}
+
+.post .header .item:first-child {
+    width: fit-content;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.post .header .item:nth-child(2) {
+    width: auto;
+    display: grid;
+}
+
+.post .header .item:first-child img {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 100%;
+}
+
+.post .header .item:nth-child(2) a {
+    text-decoration: none;
+    color: #515365;
+    font-weight: 700;
+}
+
+.post .header .item:nth-child(2) a:hover {
+    color: #38a9ff;
+}
+
+.post .header .item:nth-child(2) span {
+    color: #888da8;
+    font-size: 14px;
+}
+
+.post .body {
+    padding: 20px 0;
+    display: grid;
+    grid-row-gap: 1.6em;
+}
+
+.post .body img {
+    width: 100%;
+    height: auto;
+}
+
+.post .footer {
+    padding-top: 20px;
+    border-top: 1px solid #e6ecf5;
+    display: flex;
+    justify-content: space-around;
+    color: #515365;
+    font-size: 20px;
+}
+
+.post .footer span {
+    cursor: pointer;
+}
+
+.post .footer .filled {
+    color: #ff1a1a;
+}
+
+footer {
+    height: 50px;
+}
+
+
+/* Profile Body */
+
+@media screen and (max-width: 1100px) {
+    nav {
+        font-size: 16px;
+    }
+
+    #fs {
+        width: 10%;
+    }
+
+    i.material-icons {
+        font-size: 24px;
+    }
+
+    nav {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+
+    header {
+        margin-top: 30px;
+    }
+
+    header #control_block button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    header .photo img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #postarea textarea {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 968px) {
+    body {
+        width: 968px;
+    }
+}

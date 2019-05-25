@@ -1,0 +1,90 @@
+mixin err(msg)
+    .card#err
+        p.center-align= msg
+
+mixin suc(msg)
+    .card#suc
+        p.center-align= msg
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        link(type="text/css", rel="stylesheet", href="css/materialize.min.css",  media="screen,projection")
+        link(type="text/css", rel="stylesheet", href="css/style.css", media="screen")
+        title Welcome to Media
+    body
+        .valign-wrapper#page
+            .container
+                .row
+                    .col.s12
+                        - if (errmsg)
+                            +err(errmsg)
+                        - if (sucmsg)
+                            +suc(sucmsg)
+                        .card.hoverable
+                            .row
+                                .col.s12
+                                    h3.center-align Welcome to Media
+                                    ul.tabs
+                                        li.tab
+                                            a(href="#login") Login
+                                        li.tab
+                                            - if (reg)
+                                                - reg = "active"
+                                            a(href="#register" class=reg) Register
+                                .col.s12#login
+                                    .row
+                                        form.col.s11.offset-s05(method="POST")
+                                            .row
+                                                .input-field.col.s12
+                                                    i.material-icons.prefix email
+                                                    
+                                                    input#lem.validate(type="text", name="lem", value=lem ? lem : '')
+                                                    label(for="lem") Enter your Username or Email
+                                            .row
+                                                .input-field.col.s12
+                                                    i.material-icons.prefix lock
+                                                    input#lpw.validate(type="password", name="lpw")
+                                                    label(for="lpw") Enter your Password
+                                            .row.center-align
+                                                button.btn-large.waves-effect.waves-light.red#log(type="submit") Log In
+                                        .row.center-align.loader
+                                            img(src="images/loading.gif")
+                                            p.flow-text Logging in to your Account, Please Wait...
+                                .col.s12#register
+                                    .row
+                                        form.col.s11.offset-s05(method="POST")
+                                            .row
+                                                div.input-field.col.s12.m6
+                                                    i.material-icons.prefix person
+                                                    input#fn.validate(type="text", name="fn", value=fn ? fn : '')
+                                                    label(for="fn") First Name
+                                                div.input-field.col.s12.m6
+                                                    i.material-icons.prefix person
+                                                    input#ln.validate(type="text", name="ln", value=ln ? ln : '')
+                                                    label(for="ln") Last Name
+                                            .row
+                                                .input-field.col.s12
+                                                    i.material-icons.prefix email
+                                                    input#em.validate(type="email", name="em", value=em ? em : '')
+                                                    label(for="em") Email
+                                            .row
+                                                .input-field.col.s12
+                                                    i.material-icons.prefix lock
+                                                    input#pw.validate(type="password", name="pw")
+                                                    label(for="pw") Password
+                                            .row.center-align
+                                                button.btn-large.waves-effect.waves-light.red#reg(type="submit") Create Account
+                                        .row.center-align.loader
+                                            img(src="images/loading.gif")
+                                            p.flow-text Creating your Account, Please Wait...
+                                    
+
+        script(type="text/javascript", src="js/jquery-3.3.1.min.js")
+        script(type="text/javascript", src="js/materialize.min.js")
+        script(type="text/javascript", src="js/custom.js")   
+                

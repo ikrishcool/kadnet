@@ -1,0 +1,24 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db": "mongod --dbpath C:/Users/KRISH/Desktop/API/db --logpath C:/Users/KRISH/Desktop/API/log/dblog.log"
+  },
+  "author": "Krish Cool",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.14",
+    "multer": "^1.4.1",
+    "sharp": "^0.22.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}

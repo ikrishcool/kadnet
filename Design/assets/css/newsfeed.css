@@ -1,0 +1,77 @@
+
+.filler {
+    max-width: 1300px;
+    margin: 100px auto 0px;
+    border: none;
+}
+
+.sidebar ul {
+    margin-left: 30px;
+    margin-right: 0;
+}
+
+section .content {
+    flex: 2;
+}
+
+.sidebar ul li:first-child {
+    padding: 0;
+}
+
+.weather {
+    background-image: url('../images/bg-wethear.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 25px;
+    position: relative;
+    color: #fff;
+    background-color: #38a9ff;
+}
+
+.weather .header {
+    margin: 15px auto;
+}
+
+.weather .header .temp {
+    font-size: 60px;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.weather .header .max-min {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.weather .header .max-min span {
+    display: block;
+    font-size: 14px;
+}
+
+.weather .body {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.weather .body .msg {
+    font-size: 20px;
+}
+
+.weather .body span {
+    font-size: 14px;
+}
+
+.weather .body span:nth-child(2) {
+    margin-right: 15px;
+}
+
+.weather .footer .date {
+    font-size: 18px;
+}
+
+.weather .footer .place {
+    font-size: 14px;
+    margin-top: 5px;
+}

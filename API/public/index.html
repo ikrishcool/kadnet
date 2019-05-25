@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+    <form action="/setinfo" method="POST">
+        <input type="text" name="fn" value="akhi"><br>
+        <input type="text" name="ln" value="dutta"><br>
+        <input type="file" name="pf" id="pf"><br>
+        <input type="button" value="Upload" id="sub">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $('#sub').click(function() {
+            
+            let d = new FormData()
+            d.append('fn', 'akhi')
+            d.append('ln', 'dutta')
+            d.append('pf', $('#pf')[0].files[0])
+            console.log(d)
+            $.ajax({
+                url: '/setinfo',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YzZmZDVjNjFkYTg3ZjMwZWNkYjIyNDYiLCJpYXQiOjE1NTExMjY0MzEsImV4cCI6MTU1MTE0NDQzMX0.i_YtK5qN4BVDeC6eC7XMB5mcyz_wq8DueFF2DHL8nQQ'
+                },
+                data: d,
+                contentType: false,
+                cache: false,
+                processData: false,
+                xhr: function() {
+                    let xhr = new window.XMLHttpRequest()
+                    xhr.upload.addEventListener('progress', function(e) {
+                        if (e.lengthComputable) {
+                            let per = Math.round((e.loaded / e.total) * 100)
+                            console.log(per+"%")
+                        }
+                    })
+                    return xhr
+                },
+                success: function(r) {
+                    console.log("done " + r)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

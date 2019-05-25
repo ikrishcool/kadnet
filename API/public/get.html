@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="Enter Friends ID" id="uid" /><br><br>
+        <input type="button" value="Profile Info" id="pfinfo">
+    </form>
+
+    <form action="https://api.kadmedia.tk" method="POST">
+        <input type="submit" value="Check" />
+    </form>
+    <br>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $('#pfinfo').click(function() {
+            uid = $('#uid').val()
+            $.ajax({
+                url: '/getinfo',
+                type: 'POST',
+                data: { uid },
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YzZmZDVjNjFkYTg3ZjMwZWNkYjIyNDYiLCJpYXQiOjE1NTEzNjkzNDQsImV4cCI6MTU1MTQxMjU0NH0.7M3xHN7S2w624OF2M72wFOrEr0g8cc835gD9nNu2QTc'
+                },
+                success: function(r) {
+                    console.log(r)
+                    if (r.image) {
+                        let img = '<img src="data:' + r.image.contentType + ';base64,' + r.image.data + '" width="200px" height="auto" />'
+                        $('form').after(img)
+                    }
+                    
+                }
+            })
+        })
+
+        fetch('https://api.kadmedia.tk').then(function(r) {
+            r.json().then(function(data) {
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+</html>
