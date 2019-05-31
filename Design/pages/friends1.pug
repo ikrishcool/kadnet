@@ -1,0 +1,198 @@
+
+mixin pen(f)
+    li
+        a.dp(href="/profile/" + f.userName)
+            if (f.minimage)
+                img(src="data:" + f.minimage.contentType + ";base64," + f.minimage.data)
+            else
+                img(src="/images/bdp.png")
+        .frd
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends : #{f.mutual}
+        span.accept-reject
+            i.material-icons done
+            i.material-icons cancel
+
+mixin friends(f)
+    li
+        .friend-item
+            .thumb
+                if (f.coverpic)
+                    img(src="data:" + f.coverpic.contentType + ";base64," + f.coverpic.data)
+                else
+                    img(src="/images/blank_cover.jpg")
+        .friend-item-content
+            .avatar
+                .thumb
+                    if (f.image)
+                        img(src="data:" + f.image.contentType + ";base64," + f.image.data)
+                    else
+                        img(src="/images/bdp.png")
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends: #{f.mutual}
+            .spacer
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        link(type="text/css", rel="stylesheet", href="/css/main.css", media="screen")
+        title Social Media
+    body
+        nav
+            #nav-wrapper
+                .item
+                    a(href="/")
+                        i.material-icons home
+                    span Go to Home
+                    input#fs(type="text", placeholder="Search")
+                    i.material-icons search
+                .item
+                    .icon-dropdown
+                        if (data.friends.received.length > 0)
+                            .badge=data.friends.received.length
+                        i.material-icons#pico people
+                        .dropdown
+                            p Friend Requests
+                            if (data.friends.received.length > 0)
+                                ul#people
+                                    each f in pending
+                                        +pen(f)
+                            else
+                                .empty
+                                    p No Pending Requests
+                            .see-all
+                                a(href="#") See All Friends Events
+                    
+                    .icon-dropdown
+                        .badge 2
+                        i.material-icons#chico chat
+                        .dropdown
+                            p
+                                span Recent Chats/Messages
+                                a(href="#")
+                                    span New Message
+                            ul#chats
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        a(href="#") Amrita Dutta
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        a(href="#") Krishnendu Saha
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                            .empty
+                                p No Recent Chats
+                            .see-all
+                                a(href="#") See All Chats/Messages
+
+                    .icon-dropdown
+                        .badge 8
+                        i.material-icons#notico notifications_active
+                        .dropdown
+                            p
+                                span Notifications
+                            ul#notify
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                                li
+                                    a.dp(href="#")
+                                        img(src="/images/bdp.png")
+                                    .msg
+                                        span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                        span 1 hr ago
+                            .empty
+                                p No Recent Notifications
+                            .see-all
+                                a(href="#") See All Notifications
+
+                    .pf-dropdown
+                        a(href="/profile")
+                            if (data.minimage)
+                                img(src="data:" + data.minimage.contentType + ";base64," + data.minimage.data)
+                            else
+                                img(src="/images/bdp.png")
+                            span=data.firstName
+                            i.material-icons arrow_drop_down
+                        .pf-dropdown-menu
+                            p YOUR ACCOUNT
+                            a(href="Personal-Settings")
+                                p Profile Settings
+                            a(href="Account-Settings")
+                                p Account Settings
+                            a(href="logout")
+                                p Logout
+
+        header
+            .container
+                .cover
+                    if (frd.coverpic)
+                        img(src="data:" + frd.coverpic.contentType + ";base64," + frd.coverpic.data)
+                    else
+                        img(src="/images/blank_cover.jpg")
+                .options
+                    #opt_lt
+                        ul
+                            li
+                                a(href="/profile/" + frd.userName) Timeline
+                            li
+                                a(href="/profile/" + frd.userName + "/about") About
+                            li
+                                a.active Friends
+                    #opt_rt
+                        ul
+                            li
+                                a(href="#") Photos
+                            li
+                                a(href="#") Videos
+                            li
+                                a(href="#") Block
+                    #control_block
+                        if (stat == 1)
+                            button(type="button") Already Friends
+                            button#rmfd(type="button") Remove Friend
+                            a(href="#") Message
+                        else if (stat == 2)
+                            button#accfd(type="button") Accept Friend Request
+                        else if (stat == 3)
+                            button(type="button") Friend Request Sent
+                        else
+                            button#addfd(type="button") Add Friend
+                .photo
+                    if (frd.image)
+                        img(src="data:" + frd.image.contentType + ";base64," + frd.image.data)
+                    else
+                        img(src="/images/bdp.png")
+                    span #{frd.firstName} #{frd.lastName}
+        
+        section#friends
+            p.heading #{frd.firstName}'s Friends (#{frd.friends.accepted.length})
+            ul
+                each f in friends
+                    +friends(f)
+
+
+                        
+
+        footer
+
+
+
+        script(type="text/javascript", src="/js/jquery-3.3.1.min.js")
+        script(type="text/javascript", src="/js/moment.js")
+        script(type="text/javascript", src="/js/livestamp.min.js")
+        script(type="text/javascript", src="/js/profile.js")

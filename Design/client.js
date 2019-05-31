@@ -3,7 +3,11 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
+const http = require('http')
+const socketIO = require('socket.io')
 const app = express()
+const server = http.createServer(app)
+const io = socketIO(server)
 const PORT = process.env.PORT || 80
 
 mongoose.connect('mongodb+srv://kad:kadmedia@kadmedia-6lyjf.mongodb.net/media?retryWrites=true', { useNewUrlParser: true, useCreateIndex: true, reconnectTries: 5 }).then(() => {
@@ -49,15 +53,33 @@ const logged = async (req, res, next) => {
     }
 }
 
+/* Socket Connections */
+
+io.on('connection', (socket) => {
+    console.log('User Connected')
+    socket.on('disconnect', () => {
+        console.log('User Left')
+    })
+})
+
+app.io = io
+
+/* Socket Connections */
+
+
+app.get('/favicon.ico', (req, res) => res.status(204))
 app.use('/', require('./routes/auth'))
 app.use('/newsfeed', logged, require('./routes/newsfeed'))
 app.use('/profile', logged, require('./routes/profile'))
 app.use('/Personal-Settings', logged, require('./routes/settings1'))
+app.use('/Change-Profile-Picture', logged, require('./routes/settings2'))
 app.use('/Account-Settings', logged, require('./routes/settings3'))
+app.use('/Change-Cover-Picture', logged, require('./routes/settings4'))
+app.use('/friends', logged, require('./routes/friends'))
 app.use('/logout', logged, require('./routes/logout'))
 
 app.all('*', (req, res) => {
     res.redirect('/')
 })
 
-app.listen(PORT, console.log(`Server running on ${PORT}`))
+server.listen(PORT, console.log(`Server running on ${PORT}`))

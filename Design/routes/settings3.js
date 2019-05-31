@@ -43,7 +43,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const { oem, nem, cem, opw, npw, cpw, btn } = req.body
-    console.log(req.body)
     if (btn === 'email') {
         const p = new URLSearchParams()
         p.append('oem', oem)
@@ -77,7 +76,6 @@ router.post('/', (req, res) => {
         p.append('opw', opw)
         p.append('npw', npw)
         p.append('cpw', cpw)
-        console.log(p)
         fetch(res.locals.uri + 'setinfo', {
             method: 'POST',
             headers: {
@@ -102,11 +100,6 @@ router.post('/', (req, res) => {
             console.log(err)
         })
     }
-    
-    
-    
-
-     
 })
 
 module.exports = router

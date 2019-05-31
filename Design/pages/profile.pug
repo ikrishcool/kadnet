@@ -1,3 +1,27 @@
+mixin friend(f)
+    .item
+        a(href="/profile/" + f.userName)
+            if (f.image)
+                img(src="data:" + f.image.contentType + ";base64," + f.image.data)
+            else
+                img(src="/images/bdp.png")
+        .spacer
+        a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+
+mixin pen(f)
+    li
+        a.dp(href="/profile/" + f.userName)
+            if (f.minimage)
+                img(src="data:" + f.minimage.contentType + ";base64," + f.minimage.data)
+            else
+                img(src="/images/bdp.png")
+        .frd
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends : #{f.mutual}
+        span.accept-reject
+            i.material-icons done
+            i.material-icons cancel
+
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -20,48 +44,14 @@ html(lang="en")
                 .item
                     .icon-dropdown
                         if (data.friends.received.length > 0)
-                            .badge data.friends.received.length
+                            .badge=data.friends.received.length
                         i.material-icons#pico people
                         .dropdown
                             p Friend Requests
                             if (data.friends.received.length > 0)
                                 ul#people
-                                    li
-                                        a.dp(href="#")
-                                            img(src="/images/bdp.png")
-                                        .frd
-                                            a(href="#") Krish Cool
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="/images/bdp.png")
-                                        .frd
-                                            a(href="#") Krishnendu Saha
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="/images/bdp.png")
-                                        .frd
-                                            a(href="#") Amrita Dutta
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="/images/bdp.png")
-                                        .frd
-                                            a(href="#") Delmalya Chakraborty
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
+                                    each f in pending
+                                        +pen(f)
                             else
                                 .empty
                                     p No Pending Requests
@@ -130,24 +120,29 @@ html(lang="en")
                             i.material-icons arrow_drop_down
                         .pf-dropdown-menu
                             p YOUR ACCOUNT
-                            a(href="settings")
+                            a(href="Personal-Settings")
                                 p Profile Settings
+                            a(href="Account-Settings")
+                                p Account Settings
                             a(href="logout")
                                 p Logout
 
         header
             .container
                 .cover
-                    img(src="/images/blank_cover.jpg")
+                    if (data.coverpic)
+                        img(src="data:" + data.coverpic.contentType + ";base64," + data.coverpic.data)
+                    else
+                        img(src="/images/blank_cover.jpg")
                 .options
                     #opt_lt
                         ul
                             li
                                 a.active Timeline
                             li
-                                a(href="#") About
+                                a(href="/profile/about") About
                             li
-                                a(href="#") Friends
+                                a(href="/profile/friends") Friends
                     #opt_rt
                         ul
                             li
@@ -156,11 +151,9 @@ html(lang="en")
                                 a(href="#") Videos
                             li
                                 a(href="#") Block
-                    if (!data.email)
-                        #control_block
-                            button(type="button") Already Friends
-                            button(type="button") Remove Friend
-                            button(type="button") Message
+                    #control_block
+                        a(href="/Change-Profile-Picture") Change Profile Picture
+                        a(href="/Change-Cover-Picture") Change Cover Picture
                 .photo
                     if (data.image)
                         img(src="data:" + data.image.contentType + ";base64," + data.image.data)
@@ -175,47 +168,37 @@ html(lang="en")
                         li
                             p.heading
                                 span About
-                                a(href="#") Edit Profile
-                            p.pfinfo Lives in Kolkata
-                            p.pfinfo Studied at School
-                            p.pfinfo Works at Office
+                                a(href="Personal-Settings") Edit Profile
+                            if (data.location)
+                                p.pfinfo Lives in 
+                                    span #{data.location}
+                            if (data.gender)
+                                p.pfinfo Gender 
+                                    span #{data.gender}
+                            if (data.phone)
+                                p.pfinfo Phone Number 
+                                    span #{data.phone}
+                            if (data.email)
+                                p.pfinfo Email 
+                                    span #{data.email}
+                            if (data.createdAt)
+                                p.pfinfo Created 
+                                    span.time(livestamp=data.createdAt)
+                            if (data.updatedAt)
+                                p.pfinfo Last Updated 
+                                    span.time(livestamp=data.updatedAt)
                         li
                             p.heading
-                                span Friends (10)
+                                span Friends (#{data.friends.accepted.length})
                                 a(href="#") Find Friends
                             .pfcon
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                                .item
-                                    a(href="#")
-                                        img(src="/images/bdp.png")
-                                    .spacer
-                                    a(href="#") Krish Cool
-                            p.pfbar
-                                a(href="#") Show All Friends
+                                each f in friends
+                                    +friend(f)
+                            if (data.friends.accepted.length == 0)
+                                p.empty Search with your friends's name and send them a friend request
+                            if (data.friends.accepted.length > 6)
+                                p.pfbar
+                                    a(href="#") Show All Friends
                         li
                             p.heading
                                 span Photos (10)
@@ -350,4 +333,6 @@ html(lang="en")
 
 
         script(type="text/javascript", src="/js/jquery-3.3.1.min.js")
+        script(type="text/javascript", src="/js/moment.js")
+        script(type="text/javascript", src="/js/livestamp.min.js")
         script(type="text/javascript", src="/js/profile.js")

@@ -173,4 +173,110 @@ $(document).ready(function() {
         }
     })
 
+    $('#settings #pfpic button:nth-of-type(1)').click(function() {
+        $('#settings #pfpic input').click()
+    })
+
+    $('#settings #pfpic input').change(function() {
+        const file = this.files[0]
+        const type = ["image/gif", "image/jpeg", "image/png"]
+        if ($.inArray(file['type'], type) < 0) {
+            $('#settings #pfpic p').text("Please Select an Image File").css("display", "block").css("color", "#F44336")
+            $(this).val("")
+            if ($('#settings #pfpic .cvcon').length) {
+                $('#settings #pfpic img').attr('src', 'images/blank_cover.jpg')
+            } else {
+                $('#settings #pfpic img').attr('src', 'images/bdp.png')
+            }
+            $('#settings #pfpic button:nth-of-type(2)').css('display', 'none')
+        } else {
+            $('#settings #pfpic p').text("Showing Preview").css("display", "block").css("color", "#4CAF50")
+            let r = new FileReader()
+            r.onload = function(e) {
+                $('#settings #pfpic img').attr('src', e.target.result)
+            }
+            r.readAsDataURL(file)
+            $('#settings #pfpic button:nth-of-type(2)').css('display', 'inline-block').css('margin-left', '10px')
+        }
+    })
+
+    $('#settings #pfpic button:nth-of-type(2)').click(function() {
+        let file =  $('#settings #pfpic input')[0].files[0]
+        let d = new FormData()
+        d.append('pf', file)
+        $.ajax({
+            type: 'POST',
+            data: d,
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#settings #pfpic p').text("Uploading Please Wait...!!!")
+                $('#settings #pfpic .progress').css('display', 'inline-block').css('margin-bottom', '30px')
+                $('#settings #pfpic button').css('display', 'none')
+            },
+            xhr: function() {
+                let xhr = new window.XMLHttpRequest()
+                xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        let per = Math.round((e.loaded / e.total) * 100)
+                        $('#settings #pfpic .curr').css('width', per + '%').text(per + '%')
+                    }
+                })
+                return xhr
+            },
+            success: function(r) {
+                $('#settings #pfpic p').text(r)
+                $('#settings #pfpic input').val("")
+                setTimeout(function() {
+                    $('#settings #pfpic .progress').css('display', 'none')
+                    $('#settings #pfpic button:nth-of-type(1)').css('display', 'inline-block')
+                    location.reload(true)
+                }, 2000)
+            }
+        })
+    })
+
+    $('.time').each(function() {
+        const ts = $(this).attr('livestamp')
+        $(this).on('change.livestamp', function(event, from, to) {
+            event.preventDefault()
+            const dt = moment()
+            const delta = dt.diff(new Date(ts).getTime())
+            if (delta < 86400000) {
+                $(this).html(to)
+            } else {
+                $(this).html(moment(ts).format('Do MMM YYYY'))
+            }
+        }).livestamp(new Date(ts))
+    })
+
+    $('#addfd').click(function() {
+        const uid = $(this).attr('data-uid')
+        const el = $(this)
+        $.ajax({
+            url: '/friends/add',
+            type: 'POST',
+            data: { uid },
+            beforeSend: function() {
+                el.hide()
+                el.parent().append('<button type="button">Sending...!!!</button>')
+            },
+            success: function(r) {
+                if (r.msg === 'unauthorized') {
+                    location.reload(true)
+                } else if (r.msg === 'invalid') {
+                    el.next().text('Error! Try Again Later!')
+                    setTimeout(function() {
+                        el.next().remove()
+                        el.show()
+                    }, 2000)
+                } else if (r.msg === 'success') {
+                    el.next().text('Friend Request Sent')
+                    el.remove()
+                }
+            }
+        })
+    })
+
 })

@@ -11,6 +11,7 @@ const ProfileSchema = new mongoose.Schema({
     phone: String,
     image: { data: Buffer, contentType: String },
     minimage: { data: Buffer, contentType: String },
+    coverpic: { data: Buffer, contentType: String },
     dob: Date,
     online: Boolean,
     friends: {
@@ -22,6 +23,11 @@ const ProfileSchema = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now }    
 }, {
     versionKey: false
+})
+
+ProfileSchema.pre('save', function(next) {
+    this.updatedAt = Date.now()
+    next()
 })
 
 const Profile = mongoose.model('Profile', ProfileSchema)

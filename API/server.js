@@ -48,7 +48,8 @@ app.use('/getinfo', logged, require('./routes/getinfo'))
 app.use('/setinfo', logged, require('./routes/setinfo'))
 app.use('/savepost', logged, require('./routes/savepost'))
 app.use('/getpost', logged, require('./routes/getpost'))
-app.use('/nmpf', logged, require('./routes/nmdp'))
+app.use('/friends', logged, require('./routes/friends'))
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to Backend Server!')

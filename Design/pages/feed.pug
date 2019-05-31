@@ -1,3 +1,18 @@
+
+mixin pen(f)
+    li
+        a.dp(href="/profile/" + f.userName)
+            if (f.minimage)
+                img(src="data:" + f.minimage.contentType + ";base64," + f.minimage.data)
+            else
+                img(src="/images/bdp.png")
+        .frd
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends : #{f.mutual}
+        span.accept-reject
+            i.material-icons done
+            i.material-icons cancel
+
 <!DOCTYPE html>
 html(lang="en")
     head
@@ -21,48 +36,14 @@ html(lang="en")
                 .item
                     .icon-dropdown
                         if (data.friends.received.length > 0)
-                            .badge data.friends.received.length
+                            .badge=data.friends.received.length
                         i.material-icons#pico people
                         .dropdown
                             p Friend Requests
                             if (data.friends.received.length > 0)
                                 ul#people
-                                    li
-                                        a.dp(href="#")
-                                            img(src="images/bdp.png")
-                                        .frd
-                                            a(href="#") Krish Cool
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="images/bdp.png")
-                                        .frd
-                                            a(href="#") Krishnendu Saha
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="images/bdp.png")
-                                        .frd
-                                            a(href="#") Amrita Dutta
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
-                                    li
-                                        a.dp(href="#")
-                                            img(src="images/bdp.png")
-                                        .frd
-                                            a(href="#") Delmalya Chakraborty
-                                            span Mutual Friends : 1
-                                        span.accept-reject
-                                            i.material-icons done
-                                            i.material-icons cancel
+                                    each f in pending
+                                        +pen(f)
                             else
                                 .empty
                                     p No Pending Requests
@@ -133,6 +114,8 @@ html(lang="en")
                             p YOUR ACCOUNT
                             a(href="Personal-Settings")
                                 p Profile Settings
+                            a(href="Account-Settings")
+                                p Account Settings
                             a(href="logout")
                                 p Logout
 
@@ -270,4 +253,9 @@ html(lang="en")
 
 
         script(type="text/javascript", src="js/jquery-3.3.1.min.js")
+        script(type="text/javascript", src="/js/moment.js")
+        script(type="text/javascript", src="/js/livestamp.min.js")
         script(type="text/javascript", src="js/profile.js")
+        script(type="text/javascript", src="socket.io/socket.io.js")
+        script(type="text/javascript", src="js/realtime.js")
+

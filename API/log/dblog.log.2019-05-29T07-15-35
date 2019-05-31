@@ -1,0 +1,123 @@
+2019-05-29T01:31:01.944+0530 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] MongoDB starting : pid=1480 port=27017 dbpath=C:/Users/KRISH/Desktop/API/db 64-bit host=KRISH-PC
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] db version v4.0.8
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] git version: 9b00696ed75f65e1ebc8d635593bed79b290cfbb
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-05-29T01:31:01.979+0530 I CONTROL  [initandlisten] modules: none
+2019-05-29T01:31:01.980+0530 I CONTROL  [initandlisten] build environment:
+2019-05-29T01:31:01.980+0530 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2019-05-29T01:31:01.980+0530 I CONTROL  [initandlisten]     distarch: x86_64
+2019-05-29T01:31:01.980+0530 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-05-29T01:31:01.980+0530 I CONTROL  [initandlisten] options: { storage: { dbPath: "C:/Users/KRISH/Desktop/API/db" }, systemLog: { destination: "file", path: "C:/Users/KRISH/Desktop/API/log/dblog.log" } }
+2019-05-29T01:31:01.989+0530 I STORAGE  [initandlisten] Detected data files in C:/Users/KRISH/Desktop/API/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-05-29T01:31:01.990+0530 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3559M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-05-29T01:31:02.179+0530 I STORAGE  [initandlisten] WiredTiger message [1559073662:178627][1480:140720109802080], txn-recover: Main recovery loop: starting at 33/128256 to 34/256
+2019-05-29T01:31:02.296+0530 I STORAGE  [initandlisten] WiredTiger message [1559073662:295639][1480:140720109802080], txn-recover: Recovering log 33 through 34
+2019-05-29T01:31:02.361+0530 I STORAGE  [initandlisten] WiredTiger message [1559073662:360650][1480:140720109802080], txn-recover: Recovering log 34 through 34
+2019-05-29T01:31:02.415+0530 I STORAGE  [initandlisten] WiredTiger message [1559073662:414662][1480:140720109802080], txn-recover: Set global recovery timestamp: 0
+2019-05-29T01:31:02.435+0530 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] 
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] 
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-05-29T01:31:02.461+0530 I CONTROL  [initandlisten] 
+2019-05-29T01:31:02.683+0530 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'C:/Users/KRISH/Desktop/API/db/diagnostic.data'
+2019-05-29T01:31:02.689+0530 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-05-29T01:31:18.809+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:53848 #1 (1 connection now open)
+2019-05-29T01:31:18.821+0530 I NETWORK  [conn1] received client metadata from 127.0.0.1:53848 conn1: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T01:47:02.607+0530 E STORAGE  [WTCheckpointThread] WiredTiger error (0) [1559074622:606498][1480:140720109802080], file:WiredTiger.wt, WT_SESSION.checkpoint: __win_fs_rename, 121: Access denied to a file owned by WiredTiger. It will attempt a few more times. You should confirm no other processes, such as virus scanners, are accessing the WiredTiger files. Raw: [1559074622:606498][1480:140720109802080], file:WiredTiger.wt, WT_SESSION.checkpoint: __win_fs_rename, 121: Access denied to a file owned by WiredTiger. It will attempt a few more times. You should confirm no other processes, such as virus scanners, are accessing the WiredTiger files.
+2019-05-29T02:58:26.449+0530 I NETWORK  [conn1] end connection 127.0.0.1:53848 (0 connections now open)
+2019-05-29T02:58:34.407+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51198 #2 (1 connection now open)
+2019-05-29T02:58:34.415+0530 I NETWORK  [conn2] received client metadata from 127.0.0.1:51198 conn2: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:58:34.671+0530 I NETWORK  [conn2] end connection 127.0.0.1:51198 (0 connections now open)
+2019-05-29T02:58:36.447+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51201 #3 (1 connection now open)
+2019-05-29T02:58:36.459+0530 I NETWORK  [conn3] received client metadata from 127.0.0.1:51201 conn3: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:58:46.737+0530 I NETWORK  [conn3] end connection 127.0.0.1:51201 (0 connections now open)
+2019-05-29T02:58:48.561+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51215 #4 (1 connection now open)
+2019-05-29T02:58:48.572+0530 I NETWORK  [conn4] received client metadata from 127.0.0.1:51215 conn4: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:58:56.110+0530 I NETWORK  [conn4] end connection 127.0.0.1:51215 (0 connections now open)
+2019-05-29T02:58:57.905+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51224 #5 (1 connection now open)
+2019-05-29T02:58:57.916+0530 I NETWORK  [conn5] received client metadata from 127.0.0.1:51224 conn5: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:59:09.560+0530 I NETWORK  [conn5] end connection 127.0.0.1:51224 (0 connections now open)
+2019-05-29T02:59:11.356+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51238 #6 (1 connection now open)
+2019-05-29T02:59:11.366+0530 I NETWORK  [conn6] received client metadata from 127.0.0.1:51238 conn6: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:59:11.804+0530 I NETWORK  [conn6] end connection 127.0.0.1:51238 (0 connections now open)
+2019-05-29T02:59:13.641+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51243 #7 (1 connection now open)
+2019-05-29T02:59:13.647+0530 I NETWORK  [conn7] received client metadata from 127.0.0.1:51243 conn7: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T02:59:13.722+0530 I NETWORK  [conn7] end connection 127.0.0.1:51243 (0 connections now open)
+2019-05-29T02:59:25.076+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51256 #8 (1 connection now open)
+2019-05-29T02:59:25.087+0530 I NETWORK  [conn8] received client metadata from 127.0.0.1:51256 conn8: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:03:25.097+0530 I NETWORK  [conn8] end connection 127.0.0.1:51256 (0 connections now open)
+2019-05-29T03:03:26.819+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51506 #9 (1 connection now open)
+2019-05-29T03:03:26.830+0530 I NETWORK  [conn9] received client metadata from 127.0.0.1:51506 conn9: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:03:27.039+0530 I NETWORK  [conn9] end connection 127.0.0.1:51506 (0 connections now open)
+2019-05-29T03:03:28.800+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51510 #10 (1 connection now open)
+2019-05-29T03:03:28.805+0530 I NETWORK  [conn10] received client metadata from 127.0.0.1:51510 conn10: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:03:30.021+0530 I NETWORK  [conn10] end connection 127.0.0.1:51510 (0 connections now open)
+2019-05-29T03:03:31.781+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51514 #11 (1 connection now open)
+2019-05-29T03:03:31.792+0530 I NETWORK  [conn11] received client metadata from 127.0.0.1:51514 conn11: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:03:36.931+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51530 #12 (2 connections now open)
+2019-05-29T03:03:37.937+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:51534 #13 (3 connections now open)
+2019-05-29T03:11:44.875+0530 I NETWORK  [conn11] end connection 127.0.0.1:51514 (2 connections now open)
+2019-05-29T03:11:44.875+0530 I NETWORK  [conn12] end connection 127.0.0.1:51530 (1 connection now open)
+2019-05-29T03:11:44.875+0530 I NETWORK  [conn13] end connection 127.0.0.1:51534 (0 connections now open)
+2019-05-29T03:11:50.290+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52047 #14 (1 connection now open)
+2019-05-29T03:11:50.301+0530 I NETWORK  [conn14] received client metadata from 127.0.0.1:52047 conn14: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:11:54.582+0530 I NETWORK  [conn14] end connection 127.0.0.1:52047 (0 connections now open)
+2019-05-29T03:11:56.311+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52054 #15 (1 connection now open)
+2019-05-29T03:11:56.321+0530 I NETWORK  [conn15] received client metadata from 127.0.0.1:52054 conn15: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:11:57.738+0530 I NETWORK  [conn15] end connection 127.0.0.1:52054 (0 connections now open)
+2019-05-29T03:11:59.446+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52059 #16 (1 connection now open)
+2019-05-29T03:11:59.456+0530 I NETWORK  [conn16] received client metadata from 127.0.0.1:52059 conn16: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:04.651+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52082 #17 (2 connections now open)
+2019-05-29T03:12:05.657+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52085 #18 (3 connections now open)
+2019-05-29T03:12:06.672+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52087 #19 (4 connections now open)
+2019-05-29T03:12:32.793+0530 I NETWORK  [conn16] end connection 127.0.0.1:52059 (3 connections now open)
+2019-05-29T03:12:32.793+0530 I NETWORK  [conn17] end connection 127.0.0.1:52082 (2 connections now open)
+2019-05-29T03:12:32.793+0530 I NETWORK  [conn18] end connection 127.0.0.1:52085 (1 connection now open)
+2019-05-29T03:12:32.793+0530 I NETWORK  [conn19] end connection 127.0.0.1:52087 (0 connections now open)
+2019-05-29T03:12:34.587+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52112 #20 (1 connection now open)
+2019-05-29T03:12:34.596+0530 I NETWORK  [conn20] received client metadata from 127.0.0.1:52112 conn20: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:38.045+0530 I NETWORK  [conn20] end connection 127.0.0.1:52112 (0 connections now open)
+2019-05-29T03:12:39.798+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52118 #21 (1 connection now open)
+2019-05-29T03:12:39.809+0530 I NETWORK  [conn21] received client metadata from 127.0.0.1:52118 conn21: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:41.984+0530 I NETWORK  [conn21] end connection 127.0.0.1:52118 (0 connections now open)
+2019-05-29T03:12:43.732+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52123 #22 (1 connection now open)
+2019-05-29T03:12:43.743+0530 I NETWORK  [conn22] received client metadata from 127.0.0.1:52123 conn22: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:44.504+0530 I NETWORK  [conn22] end connection 127.0.0.1:52123 (0 connections now open)
+2019-05-29T03:12:46.269+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52127 #23 (1 connection now open)
+2019-05-29T03:12:46.279+0530 I NETWORK  [conn23] received client metadata from 127.0.0.1:52127 conn23: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:48.038+0530 I NETWORK  [conn23] end connection 127.0.0.1:52127 (0 connections now open)
+2019-05-29T03:12:49.874+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52133 #24 (1 connection now open)
+2019-05-29T03:12:49.884+0530 I NETWORK  [conn24] received client metadata from 127.0.0.1:52133 conn24: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:52.693+0530 I NETWORK  [conn24] end connection 127.0.0.1:52133 (0 connections now open)
+2019-05-29T03:12:54.475+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52138 #25 (1 connection now open)
+2019-05-29T03:12:54.485+0530 I NETWORK  [conn25] received client metadata from 127.0.0.1:52138 conn25: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:12:59.296+0530 I NETWORK  [conn25] end connection 127.0.0.1:52138 (0 connections now open)
+2019-05-29T03:13:01.183+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52147 #26 (1 connection now open)
+2019-05-29T03:13:01.193+0530 I NETWORK  [conn26] received client metadata from 127.0.0.1:52147 conn26: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-05-29T03:13:38.385+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52230 #27 (2 connections now open)
+2019-05-29T03:13:39.395+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52233 #28 (3 connections now open)
+2019-05-29T03:13:40.418+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52236 #29 (4 connections now open)
+2019-05-29T10:37:07.634+0530 I NETWORK  [conn27] end connection 127.0.0.1:52230 (3 connections now open)
+2019-05-29T10:37:07.634+0530 I NETWORK  [conn28] end connection 127.0.0.1:52233 (2 connections now open)
+2019-05-29T10:37:07.634+0530 I NETWORK  [conn29] end connection 127.0.0.1:52236 (1 connection now open)
+2019-05-29T11:35:56.160+0530 I NETWORK  [conn26] end connection 127.0.0.1:52147 (0 connections now open)
+2019-05-29T11:36:01.157+0530 I CONTROL  [thread30] Ctrl-C signal
+2019-05-29T11:36:01.157+0530 I CONTROL  [consoleTerminate] got CTRL_C_EVENT, will terminate after current cmd ends
+2019-05-29T11:36:01.165+0530 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2019-05-29T11:36:01.167+0530 I CONTROL  [consoleTerminate] Shutting down free monitoring
+2019-05-29T11:36:01.167+0530 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2019-05-29T11:36:01.175+0530 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2019-05-29T11:36:01.176+0530 I STORAGE  [consoleTerminate] Shutting down session sweeper thread
+2019-05-29T11:36:01.176+0530 I STORAGE  [consoleTerminate] Finished shutting down session sweeper thread
+2019-05-29T11:36:01.235+0530 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2019-05-29T11:36:01.236+0530 I CONTROL  [consoleTerminate] now exiting
+2019-05-29T11:36:01.236+0530 I CONTROL  [consoleTerminate] shutting down with code:12

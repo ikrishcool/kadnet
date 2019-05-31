@@ -24,7 +24,7 @@ const check = (a) => {
     }
 }
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('pf'), async (req, res) => {
     
     const { fn, ln, un, loc, gen, ph } = req.body
     let { oem, nem, cem, opw, npw, cpw } = req.body
@@ -141,7 +141,7 @@ router.post('/', async (req, res) => {
         }
         if (cem === '') {
             msg.cem = 'Confirm Email ID is Required!'
-        } else {
+        } else if (!emchk.test(nem)) {
             msg.cem = 'Valid Email ID Required!'
         }
     }
@@ -182,31 +182,48 @@ router.post('/', async (req, res) => {
             msg.cpw = 'Password must be atleast 6 Characters'
         }
     }
-
-
+    
     // Profile Pic
-    /* if (req.file) {
-        sharp(req.file.path).resize(50, 50).toBuffer().then(data => {
-            user.minimage.contentType = req.file.mimetype
-            user.minimage.data = data
-            sharp(req.file.path).resize(200, 200).toBuffer().then(data => {
-                user.image.contentType = req.file.mimetype
-                user.image.data = data
-                fs.unlinkSync(req.file.path)
-                update(user)
-            }).catch(err => {
-                console.log(err)
-            })
-        }).catch(err => {
-            console.log(err)
-        })
+    if (req.file) {
+        const data1 = await sharp(req.file.path).resize(50, 50).toBuffer()
+        user.minimage.contentType = req.file.mimetype
+        user.minimage.data = data1
+        const data2 = await sharp(req.file.path).resize(200, 200).toBuffer()
+        user.image.contentType = req.file.mimetype
+        user.image.data = data2
+        fs.unlinkSync(req.file.path)
+        msg.suc = 'Profile Picture Updated!'
     }
 
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-        res.json({ "msg": "Nothing to Update!" })
-    } */
+        msg.err = 'Nothing to Update'
+    }
 
-    //await user.save()
+    await user.save()
+    return res.json(msg)
+
+    
+})
+
+router.post('/cover', upload.single('cpc'), async (req, res) => {
+    
+    let user = await Profile.findById(req.uid)
+    let msg = {}
+    
+    // Cover Pic
+    if (req.file) {
+        const data = await sharp(req.file.path).resize(1300, 400).toBuffer()
+        user.coverpic.contentType = req.file.mimetype
+        user.coverpic.data = data
+        fs.unlinkSync(req.file.path)
+        msg.suc = 'Cover Picture Updated!'
+    }
+
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+        msg.err = 'Nothing to Update'
+    }
+
+    await user.save()
     return res.json(msg)
 
     

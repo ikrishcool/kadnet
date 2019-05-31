@@ -130,15 +130,20 @@ html(lang="en")
                             i.material-icons arrow_drop_down
                         .pf-dropdown-menu
                             p YOUR ACCOUNT
-                            a(href="settings")
+                            a(href="Personal-Settings")
                                 p Profile Settings
+                            a(href="Account-Settings")
+                                p Account Settings
                             a(href="logout")
                                 p Logout
 
         header
             .container
                 .cover
-                    img(src="/images/blank_cover.jpg")
+                    if (data.coverpic)
+                        img(src="data:" + data.coverpic.contentType + ";base64," + data.coverpic.data)
+                    else
+                        img(src="/images/blank_cover.jpg")
                 .options
                     #opt_lt
                         ul
@@ -156,11 +161,9 @@ html(lang="en")
                                 a(href="#") Videos
                             li
                                 a(href="#") Block
-                    if (!data.email)
-                        #control_block
-                            button(type="button") Already Friends
-                            button(type="button") Remove Friend
-                            button(type="button") Message
+                    #control_block
+                        a(href="/Change-Profile-Picture") Change Profile Picture
+                        a(href="/Change-Cover-Picture") Change Cover Picture
                 .photo
                     if (data.image)
                         img(src="data:" + data.image.contentType + ";base64," + data.image.data)
@@ -177,7 +180,8 @@ html(lang="en")
                                 span Profile Settings
                             a(href="/Personal-Settings") Personal Settings
                             a(href="/Account-Settings").active Account Settings
-                            a(href="/Change-Picture") Change Picture
+                            a(href="/Change-Profile-Picture") Change Profile Picture
+                            a(href="/Change-Cover-Picture") Change Cover Picture
                         li
                             p.heading
                                 span Friends Requests
