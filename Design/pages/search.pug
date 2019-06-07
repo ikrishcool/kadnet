@@ -1,0 +1,27 @@
+
+include snippets.pug
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="https://fonts.googleapis.com/css?family=Roboto", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        link(type="text/css", rel="stylesheet", href="/css/main.css", media="screen")
+        title Social Media
+    body
+        include nav.pug
+        
+        
+        section#friends.search
+            if (friends.length)
+                p.heading Search Term #{s}
+            else
+                p.heading No Matches Found
+            ul
+                each f in friends
+                    +friends(f)
+
+        include footer.pug

@@ -5,40 +5,30 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    
-    fetch(res.locals.uri + 'getinfo', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + req.session.token
-        }
-    }).then(res => res.json()).then(data => {
-        if (data.msg) {
-            return res.redirect('logout')
-        }
-        let oem, nem, cem, opw, npw, cpw = undefined
-        if (res.locals.fn.length) {
-            oem = res.locals.fn[0]
-        }
-        if (res.locals.ln.length) {
-            nem = res.locals.ln[0]
-        }
-        if (res.locals.em.length) {
-            cem = res.locals.em[0]
-        }
-        if (res.locals.reg.length) {
-            opw = res.locals.reg[0]
-        }
-        if (res.locals.sucmsg.length) {
-            npw = res.locals.sucmsg[0]
-        }
-        if (res.locals.errmsg.length) {
-            cpw = res.locals.errmsg[0]
-        }
+    const data = req.data
+    const pending = req.pending
+    let oem, nem, cem, opw, npw, cpw = undefined
+    if (res.locals.fn.length) {
+        oem = res.locals.fn[0]
+    }
+    if (res.locals.ln.length) {
+        nem = res.locals.ln[0]
+    }
+    if (res.locals.em.length) {
+        cem = res.locals.em[0]
+    }
+    if (res.locals.reg.length) {
+        opw = res.locals.reg[0]
+    }
+    if (res.locals.sucmsg.length) {
+        npw = res.locals.sucmsg[0]
+    }
+    if (res.locals.errmsg.length) {
+        cpw = res.locals.errmsg[0]
+    }
         
-        res.render('sett3', { data, oem, nem, cem, opw, npw, cpw })
-    }).catch((err) => {
-        console.log(err)
-    })
+    res.render('sett3', { data, oem, nem, cem, opw, npw, cpw, pending })
+    
 })
 
 router.post('/', (req, res) => {

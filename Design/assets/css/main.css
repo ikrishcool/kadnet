@@ -33,6 +33,7 @@ nav {
 
 #nav-wrapper .item:first-child a {
     color: #fff;
+    text-decoration: none;
 }
 
 #nav-wrapper input {
@@ -40,6 +41,10 @@ nav {
     padding: 5px 10px;
     font-size: 100%;
     width: 28vw;
+}
+
+#nav-wrapper form {
+    display: inline-block;
 }
 
 #fs + i:hover {
@@ -169,7 +174,7 @@ i.material-icons {
 }
 
 #people .frd, #chats .msg, #notify .msg {
-    width: 60%;
+    width: 55%;
     color: #515365;
     line-height: 100%;
     vertical-align: middle;
@@ -215,6 +220,33 @@ i.material-icons {
 #people span.accept-reject i:nth-child(2):hover {
     color: #ff1313;
     font-weight: 900;
+}
+
+#people span.accept-reject button {
+    font-size: 14px;
+    background-color: #38a9ff;
+    color: #fff;
+    border-radius: 25px;
+    padding: 7px 14px;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+}
+
+#people span.accept-reject button:first-child:hover {
+    background-color: #6eb9f7;
+}
+
+#people p.dispmsg {
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    border: none;
+    color: #515365;
+    font-weight: 700;
+    text-transform: none;
+    padding: 20px;
+    line-height: initial;
 }
 
 .empty p {
@@ -798,6 +830,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     display: none;
 }
 
+.search {
+    margin-top: 100px;
+}
+
 /* Settings */
 
 /* About Page */
@@ -1013,6 +1049,57 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     outline: none;
 }
 
+#posterr {
+    width: 100%;
+    display: none;
+}
+
+.status input {
+    display: none;
+}
+
+.status .imgcon {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 40px;
+    border: 1px solid #e6ecf5;
+    display: none;
+}
+
+.status .imgcon img {
+    width: 100%;
+    height: auto;
+}
+
+#postprogress {
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #e6ecf5;
+    display: none;
+}
+
+#postprogress .progress {
+    display: inline-block;
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin: 20px auto;
+    border-radius: 25px;
+    background-color: #e6ecf5;
+}
+
+#postprogress .progress .curr {
+    position: absolute;
+    height: 30px;
+    line-height: 30px;
+    top: 0;
+    left: 0;
+    color: #fff;
+    border-radius: 25px;
+    background-color: #38a9ff;
+    width: 0%;
+}
+
 #postbtn {
     background-color: #fff;
     border: none;
@@ -1037,6 +1124,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 #postbtn span:hover {
     background-color: #38a9ff;
     color: #fff;
+}
+
+#postbtn span:nth-child(2) {
+    visibility: hidden;
 }
 
 #postbtn span:nth-child(3) {
@@ -1112,9 +1203,83 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     cursor: pointer;
 }
 
+.post .item:nth-child(2) a {
+    text-decoration: none;
+    color: #515365;
+    font-weight: 600;
+}
+
+.post .item:nth-child(3) {
+    visibility: hidden;
+}
+
+.post .footer span p {
+    display: inline;
+}
+
 .post .footer .filled {
     color: #ff1a1a;
 }
+
+/* Single Post */
+
+#singlepost {
+    margin: 100px auto 20px;
+    max-width: 90vw;
+    display: block;
+}
+
+#singlepost p {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 40px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #e6ecf5;
+}
+
+#singlepost img {
+    margin: 20px auto;
+    width: 100%;
+    height: auto;
+}
+
+#singlepost .likes {
+    display: block;
+    background-color: #fff;
+    padding: 0px 40px;
+}
+
+#singlepost .likes p {
+    display: flex;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+#singlepost .likes p a:first-child {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+}
+
+#singlepost .likes p a {
+    text-decoration: none;
+    color: #515365;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+#singlepost .likes p img {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+    border-radius: 100%;
+}
+
+
+
+
+/* Single Post */
 
 footer {
     height: 50px;
@@ -1163,5 +1328,9 @@ footer {
 @media screen and (max-width: 968px) {
     body {
         width: 968px;
+    }
+
+    .search {
+        margin-top: 50px;
     }
 }

@@ -1,0 +1,91 @@
+
+mixin pen(f)
+    li
+        a.dp(href="/profile/" + f.userName)
+            if (f.minimage)
+                img(src="data:" + f.minimage.contentType + ";base64," + f.minimage.data)
+            else
+                img(src="/images/bdp.png")
+        .frd
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends : #{f.mutual}
+        span.accept-reject
+            button(type="button", data-uid=f.id) Accept
+
+mixin friend(f)
+    .item
+        a(href="/profile/" + f.userName)
+            if (f.image)
+                img(src="data:" + f.image.contentType + ";base64," + f.image.data)
+            else
+                img(src="/images/bdp.png")
+        .spacer
+        a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+
+mixin friends(f)
+    li
+        .friend-item
+            .thumb
+                if (f.coverpic)
+                    img(src="data:" + f.coverpic.contentType + ";base64," + f.coverpic.data)
+                else
+                    img(src="/images/blank_cover.jpg")
+        .friend-item-content
+            .avatar
+                .thumb
+                    if (f.image)
+                        img(src="data:" + f.image.contentType + ";base64," + f.image.data)
+                    else
+                        img(src="/images/bdp.png")
+            a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+            span Mutual Friends: #{f.mutual}
+            if (f.stat == 1)
+                button#rmfd(type="button", data-uid=f._id) Remove Friend
+                button(type="button") Message
+            else if (f.stat == 2)
+                button#accfd(type="button", data-uid=f._id) Accept Friend Request
+            else if (f.stat == 3)
+                button(type="button") Friend Request Sent
+            else
+                button#addfd(type="button", data-uid=f._id) Add Friend
+
+mixin posts(p)
+    li.post(post-id=p._id)
+        .header
+            .item
+                a.dp(href="profile/" + p.own)
+                    if (p.minimage)
+                        img(src="data:" + p.minimage.contentType + ";base64," + p.minimage.data)
+                    else
+                        img(src="/images/bdp.png")
+            .item
+                a(href="profile/" + p.own) #{p.firstName} #{p.lastName}
+                span.time1(livestamp=p.updatedAt)
+        .body
+            if (p.text)
+                .item=p.text
+            if (p.image)
+                .item
+                    img(src="data:" + p.image.contentType + ";base64," + p.image.data)
+        .footer
+            .item
+                if (p.likestate)
+                    span.filled
+                        i.material-icons favorite
+                        p #{p.likes.length}
+                        p Likes
+                else
+                    span
+                        i.material-icons favorite_border
+                        p.count #{p.likes.length}
+                        p Likes
+            .item
+                a(href="/posts/" + p._id)
+                    span
+                        i.material-icons insert_comment
+                        p.count #{p.comment.length}
+                        p Comments
+            .item
+                span
+                    i.material-icons share
+                    | Share Post

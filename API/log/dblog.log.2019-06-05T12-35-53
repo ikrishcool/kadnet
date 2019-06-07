@@ -1,0 +1,57 @@
+2019-06-04T11:38:13.478+0530 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] MongoDB starting : pid=20980 port=27017 dbpath=C:/Users/KRISH/Desktop/API/db 64-bit host=KRISH-PC
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] db version v4.0.8
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] git version: 9b00696ed75f65e1ebc8d635593bed79b290cfbb
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-06-04T11:38:13.513+0530 I CONTROL  [initandlisten] modules: none
+2019-06-04T11:38:13.514+0530 I CONTROL  [initandlisten] build environment:
+2019-06-04T11:38:13.514+0530 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2019-06-04T11:38:13.514+0530 I CONTROL  [initandlisten]     distarch: x86_64
+2019-06-04T11:38:13.514+0530 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-06-04T11:38:13.514+0530 I CONTROL  [initandlisten] options: { storage: { dbPath: "C:/Users/KRISH/Desktop/API/db" }, systemLog: { destination: "file", path: "C:/Users/KRISH/Desktop/API/log/dblog.log" } }
+2019-06-04T11:38:13.528+0530 I STORAGE  [initandlisten] Detected data files in C:/Users/KRISH/Desktop/API/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-06-04T11:38:13.528+0530 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3559M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-06-04T11:38:13.738+0530 I STORAGE  [initandlisten] WiredTiger message [1559628493:738415][20980:140724291654240], txn-recover: Main recovery loop: starting at 38/8378240 to 39/256
+2019-06-04T11:38:13.845+0530 I STORAGE  [initandlisten] WiredTiger message [1559628493:845238][20980:140724291654240], txn-recover: Recovering log 38 through 39
+2019-06-04T11:38:13.906+0530 I STORAGE  [initandlisten] WiredTiger message [1559628493:905252][20980:140724291654240], txn-recover: Recovering log 39 through 39
+2019-06-04T11:38:13.963+0530 I STORAGE  [initandlisten] WiredTiger message [1559628493:962275][20980:140724291654240], txn-recover: Set global recovery timestamp: 0
+2019-06-04T11:38:13.984+0530 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] 
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] 
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-06-04T11:38:14.011+0530 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-06-04T11:38:14.012+0530 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-06-04T11:38:14.012+0530 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-06-04T11:38:14.012+0530 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-06-04T11:38:14.012+0530 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-06-04T11:38:14.012+0530 I CONTROL  [initandlisten] 
+2019-06-04T11:38:14.245+0530 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'C:/Users/KRISH/Desktop/API/db/diagnostic.data'
+2019-06-04T11:38:14.251+0530 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-06-04T11:38:22.658+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:52841 #1 (1 connection now open)
+2019-06-04T11:38:22.670+0530 I NETWORK  [conn1] received client metadata from 127.0.0.1:52841 conn1: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-04T11:41:28.260+0530 I NETWORK  [conn1] end connection 127.0.0.1:52841 (0 connections now open)
+2019-06-04T11:41:31.496+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:53056 #2 (1 connection now open)
+2019-06-04T11:41:31.507+0530 I NETWORK  [conn2] received client metadata from 127.0.0.1:53056 conn2: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-04T11:48:22.672+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:53703 #3 (2 connections now open)
+2019-06-05T02:37:31.284+0530 I NETWORK  [conn2] end connection 127.0.0.1:53056 (1 connection now open)
+2019-06-05T02:37:31.284+0530 I NETWORK  [conn3] end connection 127.0.0.1:53703 (0 connections now open)
+2019-06-05T02:37:34.630+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:61578 #4 (1 connection now open)
+2019-06-05T02:37:34.638+0530 I NETWORK  [conn4] received client metadata from 127.0.0.1:61578 conn4: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-05T03:28:31.694+0530 I NETWORK  [conn4] end connection 127.0.0.1:61578 (0 connections now open)
+2019-06-05T03:28:33.445+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:64257 #5 (1 connection now open)
+2019-06-05T03:28:33.450+0530 I NETWORK  [conn5] received client metadata from 127.0.0.1:64257 conn5: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-05T18:04:00.028+0530 I CONTROL  [thread6] CTRL_CLOSE_EVENT signal
+2019-06-05T18:04:00.030+0530 I CONTROL  [consoleTerminate] got CTRL_CLOSE_EVENT, will terminate after current cmd ends
+2019-06-05T18:04:00.036+0530 I NETWORK  [conn5] end connection 127.0.0.1:64257 (0 connections now open)
+2019-06-05T18:04:00.039+0530 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2019-06-05T18:04:00.050+0530 I CONTROL  [consoleTerminate] Shutting down free monitoring
+2019-06-05T18:04:00.056+0530 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2019-06-05T18:04:00.066+0530 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2019-06-05T18:04:00.066+0530 I STORAGE  [consoleTerminate] Shutting down session sweeper thread
+2019-06-05T18:04:00.067+0530 I STORAGE  [consoleTerminate] Finished shutting down session sweeper thread
+2019-06-05T18:04:00.202+0530 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2019-06-05T18:04:00.204+0530 I CONTROL  [consoleTerminate] now exiting
+2019-06-05T18:04:00.206+0530 I CONTROL  [consoleTerminate] shutting down with code:12

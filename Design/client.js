@@ -24,6 +24,7 @@ app.use(session({
     secret: 'krishcool',
     store: new MongoStore({ mongooseConnection: mongoose.connection, autoRemove: 'native' })
 }))
+
 app.locals.pretty = true
 app.set('view engine', 'pug')
 app.set('views', './pages')
@@ -43,7 +44,7 @@ app.use((req, res, next) => {
     next()
 })
 
-const logged = async (req, res, next) => {
+const logged = (req, res, next) => {
     const token = req.session.token
     if(typeof token === 'undefined') {
         req.flash('err', "Please Log In to Continue")
@@ -53,29 +54,50 @@ const logged = async (req, res, next) => {
     }
 }
 
+const getSID = async (str) => {
+    const sid = str.split(';')
+    for (i = 0; i < sid.length; i++) {
+        tmp = sid[i]
+        if (tmp.includes('connect')) {
+            start = tmp.indexOf('=')
+            s = tmp.substring(start + 1)
+            return s
+        }
+    }
+}
+
+app.error = ''
+app.users = []
+
 /* Socket Connections */
-
-io.on('connection', (socket) => {
-    console.log('User Connected')
-    socket.on('disconnect', () => {
-        console.log('User Left')
-    })
-})
-
 app.io = io
 
+/* app.io.on('connection', (socket) => {
+    const ssid = getSID(socket.handshake.headers.cookie)
+    for (i = 0; i < app.users; i++) {
+        user = app.users[i]
+        if (user.sid === ssid) {
+            socket.join(user.uid)
+        }
+    }
+    
+}) */
+
+
 /* Socket Connections */
 
-
+const navbar = require('./routes/navbar')
 app.get('/favicon.ico', (req, res) => res.status(204))
 app.use('/', require('./routes/auth'))
-app.use('/newsfeed', logged, require('./routes/newsfeed'))
-app.use('/profile', logged, require('./routes/profile'))
-app.use('/Personal-Settings', logged, require('./routes/settings1'))
-app.use('/Change-Profile-Picture', logged, require('./routes/settings2'))
-app.use('/Account-Settings', logged, require('./routes/settings3'))
-app.use('/Change-Cover-Picture', logged, require('./routes/settings4'))
-app.use('/friends', logged, require('./routes/friends'))
+app.use('/newsfeed', logged, navbar, require('./routes/newsfeed'))
+app.use('/profile', logged, navbar, require('./routes/profile'))
+app.use('/search', logged, navbar, require('./routes/search'))
+app.use('/Personal-Settings', logged, navbar, require('./routes/settings1'))
+app.use('/Change-Profile-Picture', logged, navbar, require('./routes/settings2'))
+app.use('/Account-Settings', logged, navbar, require('./routes/settings3'))
+app.use('/Change-Cover-Picture', logged, navbar, require('./routes/settings4'))
+app.use('/friends', logged, navbar, require('./routes/friends'))
+app.use('/posts', logged, navbar, require('./routes/posts'))
 app.use('/logout', logged, require('./routes/logout'))
 
 app.all('*', (req, res) => {

@@ -12,6 +12,10 @@ router.get('/', (req, res) => {
     if (res.locals.errmsg.length) {
         err = res.locals.errmsg
     }
+    if (req.app.error) {
+        err = req.app.error
+        req.app.error = ''
+    }
     if (res.locals.sucmsg.length) {
         suc = res.locals.sucmsg
     }

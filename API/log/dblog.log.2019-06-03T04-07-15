@@ -1,0 +1,49 @@
+2019-06-01T09:13:40.175+0530 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-06-01T09:13:40.210+0530 I CONTROL  [initandlisten] MongoDB starting : pid=12396 port=27017 dbpath=C:/Users/KRISH/Desktop/API/db 64-bit host=KRISH-PC
+2019-06-01T09:13:40.211+0530 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2019-06-01T09:13:40.211+0530 I CONTROL  [initandlisten] db version v4.0.8
+2019-06-01T09:13:40.211+0530 I CONTROL  [initandlisten] git version: 9b00696ed75f65e1ebc8d635593bed79b290cfbb
+2019-06-01T09:13:40.211+0530 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-06-01T09:13:40.211+0530 I CONTROL  [initandlisten] modules: none
+2019-06-01T09:13:40.212+0530 I CONTROL  [initandlisten] build environment:
+2019-06-01T09:13:40.212+0530 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2019-06-01T09:13:40.212+0530 I CONTROL  [initandlisten]     distarch: x86_64
+2019-06-01T09:13:40.212+0530 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-06-01T09:13:40.212+0530 I CONTROL  [initandlisten] options: { storage: { dbPath: "C:/Users/KRISH/Desktop/API/db" }, systemLog: { destination: "file", path: "C:/Users/KRISH/Desktop/API/log/dblog.log" } }
+2019-06-01T09:13:40.222+0530 I STORAGE  [initandlisten] Detected data files in C:/Users/KRISH/Desktop/API/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-06-01T09:13:40.223+0530 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3559M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-06-01T09:13:40.476+0530 I STORAGE  [initandlisten] WiredTiger message [1559360620:475351][12396:140724291654240], txn-recover: Main recovery loop: starting at 36/3581952 to 37/256
+2019-06-01T09:13:40.592+0530 I STORAGE  [initandlisten] WiredTiger message [1559360620:591734][12396:140724291654240], txn-recover: Recovering log 36 through 37
+2019-06-01T09:13:40.673+0530 I STORAGE  [initandlisten] WiredTiger message [1559360620:672756][12396:140724291654240], txn-recover: Recovering log 37 through 37
+2019-06-01T09:13:40.744+0530 I STORAGE  [initandlisten] WiredTiger message [1559360620:743771][12396:140724291654240], txn-recover: Set global recovery timestamp: 0
+2019-06-01T09:13:40.768+0530 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] 
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] 
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-06-01T09:13:40.795+0530 I CONTROL  [initandlisten] 
+2019-06-01T09:13:41.050+0530 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'C:/Users/KRISH/Desktop/API/db/diagnostic.data'
+2019-06-01T09:13:41.057+0530 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-06-01T09:15:04.308+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:58860 #1 (1 connection now open)
+2019-06-01T09:15:04.319+0530 I NETWORK  [conn1] received client metadata from 127.0.0.1:58860 conn1: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-01T09:16:23.037+0530 I NETWORK  [conn1] end connection 127.0.0.1:58860 (0 connections now open)
+2019-06-01T09:16:24.783+0530 I NETWORK  [listener] connection accepted from 127.0.0.1:58864 #2 (1 connection now open)
+2019-06-01T09:16:24.794+0530 I NETWORK  [conn2] received client metadata from 127.0.0.1:58864 conn2: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.17763" }, platform: "Node.js v11.13.0, LE, mongodb-core: 3.1.11" }
+2019-06-01T10:38:13.074+0530 I NETWORK  [conn2] end connection 127.0.0.1:58864 (0 connections now open)
+2019-06-01T10:38:16.183+0530 I CONTROL  [thread3] Ctrl-C signal
+2019-06-01T10:38:16.183+0530 I CONTROL  [consoleTerminate] got CTRL_C_EVENT, will terminate after current cmd ends
+2019-06-01T10:38:16.185+0530 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2019-06-01T10:38:16.186+0530 I CONTROL  [consoleTerminate] Shutting down free monitoring
+2019-06-01T10:38:16.186+0530 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2019-06-01T10:38:16.194+0530 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2019-06-01T10:38:16.195+0530 I STORAGE  [consoleTerminate] Shutting down session sweeper thread
+2019-06-01T10:38:16.195+0530 I STORAGE  [consoleTerminate] Finished shutting down session sweeper thread
+2019-06-01T10:38:16.235+0530 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2019-06-01T10:38:16.235+0530 I CONTROL  [consoleTerminate] now exiting
+2019-06-01T10:38:16.236+0530 I CONTROL  [consoleTerminate] shutting down with code:12

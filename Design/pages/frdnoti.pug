@@ -1,0 +1,11 @@
+li
+    a.dp(href="/profile/" + f.userName)
+        if (f.minimage)
+            img(src="data:" + f.minimage.contentType + ";base64," + f.minimage.data)
+        else
+            img(src="/images/bdp.png")
+    .frd
+        a(href="/profile/" + f.userName) #{f.firstName} #{f.lastName}
+        span Mutual Friends : #{f.mutual}
+    span.accept-reject
+        button(type="button", data-uid=f._id) Accept

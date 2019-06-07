@@ -5,40 +5,29 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
+    const data = req.data
+    const pending = req.pending
+    let fn, ln, un, gen, loc, ph = undefined
+    if (res.locals.fn.length) {
+        fn = res.locals.fn[0]
+    }
+    if (res.locals.ln.length) {
+        ln = res.locals.ln[0]
+    }
+    if (res.locals.em.length) {
+        un = res.locals.em[0]
+    }
+    if (res.locals.reg.length) {
+        gen = res.locals.reg[0]
+    }
+    if (res.locals.sucmsg.length) {
+        loc = res.locals.sucmsg[0]
+    }
+    if (res.locals.errmsg.length) {
+        ph = res.locals.errmsg[0]
+    }
     
-    fetch(res.locals.uri + 'getinfo', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + req.session.token
-        }
-    }).then(res => res.json()).then(data => {
-        if (data.msg) {
-            return res.redirect('logout')
-        }
-        let fn, ln, un, gen, loc, ph = undefined
-        if (res.locals.fn.length) {
-            fn = res.locals.fn[0]
-        }
-        if (res.locals.ln.length) {
-            ln = res.locals.ln[0]
-        }
-        if (res.locals.em.length) {
-            un = res.locals.em[0]
-        }
-        if (res.locals.reg.length) {
-            gen = res.locals.reg[0]
-        }
-        if (res.locals.sucmsg.length) {
-            loc = res.locals.sucmsg[0]
-        }
-        if (res.locals.errmsg.length) {
-            ph = res.locals.errmsg[0]
-        }
-        
-        res.render('sett1', { data, fn, ln, un, gen, loc, ph })
-    }).catch((err) => {
-        console.log(err)
-    })
+    res.render('sett1', { data, fn, ln, un, gen, loc, ph, pending })
 })
 
 router.post('/', (req, res) => {

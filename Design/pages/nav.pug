@@ -1,0 +1,95 @@
+nav
+    #nav-wrapper
+        .item
+            a(href="/newfeed")
+                i.material-icons home
+                span HOME
+            form(action="/search", method="POST")
+                input#fs(type="text", placeholder="Search", name="search")
+            i.material-icons search
+        .item
+            .icon-dropdown
+                if (data.friends.received.length > 0)
+                    .badge=data.friends.received.length
+                i.material-icons#pico people
+                .dropdown
+                    p Friend Requests
+                    if (data.friends.received.length > 0)
+                        ul#people
+                            each f in pending
+                                +pen(f)
+                    else
+                        .empty
+                            p No Pending Requests
+                    if (data.friends.received.length > 3)
+                        .see-all
+                            a(href="#") See All Friends Events
+            
+            .icon-dropdown
+                //- .badge 2
+                i.material-icons#chico chat
+                .dropdown
+                    p
+                        span Recent Chats/Messages
+                        a(href="#")
+                            span New Message
+                    ul#chats
+                        li
+                            a.dp(href="#")
+                                img(src="/images/bdp.png")
+                            .msg
+                                a(href="#") Amrita Dutta
+                                span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                span 1 hr ago
+                        li
+                            a.dp(href="#")
+                                img(src="/images/bdp.png")
+                            .msg
+                                a(href="#") Krishnendu Saha
+                                span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                span 1 hr ago
+                    .empty
+                        p No Recent Chats
+                    .see-all
+                        a(href="#") See All Chats/Messages
+
+            .icon-dropdown
+                //- .badge 8
+                i.material-icons#notico notifications_active
+                .dropdown
+                    p
+                        span Notifications
+                    ul#notify
+                        li
+                            a.dp(href="#")
+                                img(src="/images/bdp.png")
+                            .msg
+                                span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                span 1 hr ago
+                        li
+                            a.dp(href="#")
+                                img(src="/images/bdp.png")
+                            .msg
+                                span Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam repellendus debitis repellat vel dolore reprehenderit cum sunt corporis consequatur, facilis mollitia ipsam odit? Pariatur modi assumenda porro quaerat fuga!
+                                span 1 hr ago
+                    .empty
+                        p No Recent Notifications
+                    .see-all
+                        a(href="#") See All Notifications
+
+            .pf-dropdown
+                a(href="/profile")
+                    if (data.minimage)
+                        img(src="data:" + data.minimage.contentType + ";base64," + data.minimage.data)
+                    else
+                        img(src="/images/bdp.png")
+                    span=data.firstName
+                    i.material-icons arrow_drop_down
+                .pf-dropdown-menu
+                    p YOUR ACCOUNT
+                    a(href="Personal-Settings")
+                        p Profile Settings
+                    a(href="Account-Settings")
+                        p Account Settings
+                    a(href="logout")
+                        p Logout

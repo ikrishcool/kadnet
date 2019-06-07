@@ -251,32 +251,343 @@ $(document).ready(function() {
         }).livestamp(new Date(ts))
     })
 
-    $('#addfd').click(function() {
-        const uid = $(this).attr('data-uid')
+    $('.time1').each(function() {
+        const ts = $(this).attr('livestamp')
+        $(this).on('change.livestamp', function(event, from, to) {
+            event.preventDefault()
+            const dt = moment()
+            const delta = dt.diff(new Date(ts).getTime())
+            if (delta < 86400000) {
+                $(this).html(to)
+            } else {
+                $(this).html(moment(ts).format('Do MMM h:mm a'))
+            }
+        }).livestamp(new Date(ts))
+    })
+
+    const addFriend = () => {
+        $('#addfd').click(function() {
+            const uid = $(this).attr('data-uid')
+            const el = $(this)
+            $.ajax({
+                url: '/friends/add',
+                type: 'POST',
+                data: { uid },
+                beforeSend: function() {
+                    el.hide()
+                    el.parent().append('<button type="button">Sending...!!!</button>')
+                },
+                success: function(r) {
+                    if (r.msg === 'unauthorized') {
+                        location.reload(true)
+                    } else if (r.msg === 'invalid') {
+                        el.next().text('Error! Try Again Later!')
+                        setTimeout(function() {
+                            el.next().remove()
+                            el.show()
+                        }, 2000)
+                    } else if (r.msg === 'success') {
+                        el.next().text('Friend Request Sent')
+                        el.remove()
+                    }
+                }
+            })
+        })
+    }
+
+    const removeFriend = () => {
+        $('#rmfd').click(function() {
+            const uid = $(this).attr('data-uid')
+            const el = $(this)
+            $.ajax({
+                url: '/friends/remove',
+                type: 'POST',
+                data: { uid },
+                beforeSend: function() {
+                    el.hide()
+                    el.next().hide()
+                    el.prev().text('Removing, Please Wait...!!!')
+                },
+                success: function(r) {
+                    if (r.msg === 'unauthorized') {
+                        location.reload(true)
+                    } else if (r.msg === 'invalid') {
+                        el.prev().text('Error! Try Again Later!')
+                        setTimeout(function() {
+                            el.show()
+                            el.next().show()
+                            el.prev().text('Already Friends')
+                        }, 2000)
+                    } else if (r.msg === 'success') {
+                        el.hide()
+                        el.next().remove()
+                        el.prev().text('Friend Removed')
+                        setTimeout(function() {
+                            el.prev().text('Add Friend').attr('id', 'addfd').attr('data-uid', uid)
+                            addFriend()
+                            el.remove()
+                        }, 2000)
+                    }
+                }
+            })
+        })
+    }
+
+    const acceptFriend = () => {
+        $('.accept-reject button:first-child').click(function() {
+            const uid = $(this).attr('data-uid')
+            const el = $(this)
+            $.ajax({
+                url: '/friends/accept',
+                type: 'POST',
+                data: { uid },
+                beforeSend: function() {
+                    el.hide()
+                    el.parent().append('<button type="button">Please Wait</button>')
+                    if ($('#accfd').length) {
+                        $('#accfd').hide()
+                        $('#accfd').before('<button type="button">Accepting Friend Request</button>')
+                    }
+                },
+                success: function(r) {
+                    if (r.msg === 'unauthorized') {
+                        location.reload(true)
+                    } else if (r.msg === 'invalid') {
+                        el.next().text('Error!')
+                        if ($('#accfd').length) {
+                            $('#accfd').before('<button type="button">Error! Try Again!</button>')
+                        }
+                        setTimeout(function() {
+                            el.next().remove()
+                            el.show()
+                            if ($('#accfd').length) {
+                                $('#accfd').prev().remove()
+                                $('#accfd').show()
+                            }
+                        }, 2000)
+                    } else if (r.msg === 'success') {
+                        el.parent().parent().hide()
+                        el.parent().parent().after(r.code)
+                        el.parent().parent().remove()
+                        if ($('#accfd').length) {
+                            $('#accfd').prev().text('Already Friends')
+                            $('#accfd').after('<button id="rmfd" type="button" data-uid="' + uid + '">Remove Friend</button>')
+                            $('#accfd').next().after('<a href="#">Message</a>')
+                            $('#accfd').remove()
+                            removeFriend()
+                        }
+                        setTimeout(function() {
+                            $('.icon-dropdown:nth-child(1) .dropdown ul p').remove()
+                            if ($('.icon-dropdown:nth-child(1) .badge').length == 0) {
+                                $('.icon-dropdown:nth-child(1) .dropdown ul').after('<div class="empty"><p>No Pending Requests</p></div>')
+                                $('.icon-dropdown:nth-child(1) .dropdown ul').remove()
+                            }
+                        }, 2000)
+                        badge = $('.icon-dropdown:nth-child(1) .badge').html()
+                        if (badge == 1) {
+                            $('.icon-dropdown:nth-child(1) .badge').remove()
+                        } else {
+                            badge = badge - 1
+                            $('.icon-dropdown:nth-child(1) .badge').html(badge)
+                        }
+                    }
+                }
+            })
+        })
+    }
+
+    const acceptFriend2 = () => {
+        $('#accfd').click(function() {
+            const uid = $(this).attr('data-uid')
+            const el = $(this)
+            $.ajax({
+                url: '/friends/accept',
+                type: 'POST',
+                data: { uid },
+                beforeSend: function() {
+                    el.hide()
+                    el.before('<button type="button">Accepting Friend Request</button>')
+                    if ($('#people button[data-uid=' + uid + ']').length) {
+                        $('#people button[data-uid=' + uid + ']').text('Please Wait').attr('disabled', 'disabled')
+                    }
+                },
+                success: function(r) {
+                    if (r.msg === 'unauthorized') {
+                        location.reload(true)
+                    } else if (r.msg === 'invalid') {
+                        el.prev().text('Error!')
+                        if ($('#people button[data-uid=' + uid + ']').length) {
+                            $('#people button[data-uid=' + uid + ']').text('Error')
+                        }
+                        setTimeout(function() {
+                            el.prev().remove()
+                            el.show()
+                            if ($('#people button[data-uid=' + uid + ']').length) {
+                                $('#people button[data-uid=' + uid + ']').text('Accept').removeAttr('disabled')
+                            }
+                        }, 2000)
+                    } else if (r.msg === 'success') {
+                        if ($('#people button[data-uid=' + uid + ']').length) {
+                            $('#people button[data-uid=' + uid + ']').parent().parent().hide()
+                            $('#people button[data-uid=' + uid + ']').parent().parent().after(r.code)
+                            $('#people button[data-uid=' + uid + ']').parent().parent().remove()
+                            setTimeout(function() {
+                                $('.icon-dropdown:nth-child(1) .dropdown ul p').remove()
+                            if ($('.icon-dropdown:nth-child(1) .badge').length == 0) {
+                                $('.icon-dropdown:nth-child(1) .dropdown ul').after('<div class="empty"><p>No Pending Requests</p></div>')
+                                $('.icon-dropdown:nth-child(1) .dropdown ul').remove()
+                            }
+                            }, 2000)
+                        }
+                        el.prev().text('Already Friends')
+                        el.after('<button id="rmfd" type="button" data-uid="' + uid + '">Remove Friend</button>')
+                        el.next().after('<a href="#">Message</a>')
+                        el.remove()
+                        removeFriend()
+                        badge = $('.icon-dropdown:nth-child(1) .badge').html()
+                        if (badge == 1) {
+                            $('.icon-dropdown:nth-child(1) .badge').remove()
+                        } else {
+                            badge = badge - 1
+                            $('.icon-dropdown:nth-child(1) .badge').html(badge)
+                        }
+                    }
+                }
+            })
+        })
+    }
+
+    $('#postbtn span:nth-child(1)').click(function() {
+        $('.status input').click()
+    })
+
+    $('.status input').change(function() {
+        const file = this.files[0]
+        const type = ["image/gif", "image/jpeg", "image/png"]
+        if ($.inArray(file['type'], type) < 0) {
+            $('#posterr').text("Please Select an Image File").css("display", "block").css("color", "#F44336")
+            $(this).val("")
+            $('.status .imgcon').css("display", "none")
+            $('#postbtn span:nth-child(1)').html('<i class="material-icons">add_a_photo</i>Add Photo')
+        } else {
+            $('#postbtn span:nth-child(1)').html('<i class="material-icons">add_a_photo</i>Change Photo')
+            $('#posterr').text("This Photo will be added to status").css("display", "block").css("color", "#4CAF50")
+            let r = new FileReader()
+            r.onload = function(e) {
+                $('.status .imgcon img').attr('src', e.target.result)
+            }
+            r.readAsDataURL(file)
+            $('.status .imgcon').css("display", "block")
+        }
+    })
+
+    $('#postbtn span:nth-child(3)').click(function() {
+        const file = $('.status input')[0].files[0]
+        const text = $('#postarea textarea').val()
+        if (file || text.trim() !== '') {
+            let d = new FormData()
+            if (file) {
+                d.append('pic', file)
+            }
+            if (text) {
+                d.append('msg', text)
+            }
+            $.ajax({
+                url: '/posts/add',
+                type: 'POST',
+                data: d,
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#posterr').css("display", "block").text("Uploading Please Wait...!!!").css("color", "#4CAF50")
+                    $('.status .imgcon').css("display", "none")
+                    $('#postprogress').css('display', 'block')
+                    $('#postbtn span:nth-child(3)').css('display', 'none')
+                },
+                xhr: function() {
+                    let xhr = new window.XMLHttpRequest()
+                    xhr.upload.addEventListener('progress', function(e) {
+                        if (e.lengthComputable) {
+                            let per = Math.round((e.loaded / e.total) * 100)
+                            $('#postprogress .curr').css('width', per + '%').text(per + '%')
+                        }
+                    })
+                    return xhr
+                },
+                success: function(r) {
+                    $('#posterr').text(r)
+                    $('.status input').val('')
+                    $('#postarea textarea').val('')
+                    setTimeout(function() {
+                        $('#postprogress').css('display', 'none')
+                        $('#posterr').css("display", "none")
+                        $('#postbtn span:nth-child(3)').css('display', 'inline-block')
+                    }, 2000)
+                }
+            })
+        }
+    })
+
+    $('#fs').keypress(function(e) {
+        if (e.which == 13) {
+            const value = $(this).val().trim()
+            if (value === '') {
+                $(this).attr('placeholder', 'Enter a Name to Search')
+            }
+        }
+    })
+
+    $('#fs').parent().next().click(function() {
+        const value = $('#fs').val().trim()
+        if (value === '') {
+            $('#fs').attr('placeholder', 'Enter a Name to Search')
+        } else {
+            $('#fs').parent().submit()
+        }
+    })
+
+    $('.post .footer .item:nth-child(1) span').click(function() {
+        const pid = $(this).parent().parent().parent().attr('post-id')
+        const state = $(this).hasClass('filled')
         const el = $(this)
         $.ajax({
-            url: '/friends/add',
+            url: '/posts/like',
             type: 'POST',
-            data: { uid },
+            data: { pid, state },
             beforeSend: function() {
-                el.hide()
-                el.parent().append('<button type="button">Sending...!!!</button>')
+                let count = parseInt(el.find('p.count').text())
+                if (state) {
+                    count = count - 1
+                    el.find('p.count').text(count)
+                    el.removeClass('filled').find('i').text('favorite_border')
+                } else {
+                    count = count + 1
+                    el.find('p.count').text(count)
+                    el.addClass('filled').find('i').text('favorite')
+                }
             },
             success: function(r) {
-                if (r.msg === 'unauthorized') {
-                    location.reload(true)
-                } else if (r.msg === 'invalid') {
-                    el.next().text('Error! Try Again Later!')
-                    setTimeout(function() {
-                        el.next().remove()
-                        el.show()
-                    }, 2000)
-                } else if (r.msg === 'success') {
-                    el.next().text('Friend Request Sent')
-                    el.remove()
+                if (r.msg === 'invalid') {
+                    const state = el.hasClass('filled')
+                    let count = parseInt(el.find('p.count').text())
+                    if (state) {
+                        count = count - 1
+                        el.find('p.count').text(count)
+                        el.removeClass('filled').find('i').text('favorite_border')
+                    } else {
+                        count = count + 1
+                        el.find('p.count').text(count)
+                        el.addClass('filled').find('i').text('favorite')
+                    }
                 }
             }
         })
     })
+    
+    addFriend()
+    acceptFriend()
+    acceptFriend2()
+    removeFriend()
 
 })

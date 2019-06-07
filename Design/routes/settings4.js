@@ -15,20 +15,9 @@ const tmpstr = multer.diskStorage({
 const upload = multer({ storage: tmpstr })
 
 router.get('/', (req, res) => {
-    
-    fetch(res.locals.uri + 'getinfo', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + req.session.token
-        }
-    }).then(res => res.json()).then(data => {
-        if (data.msg) {
-            return res.redirect('logout')
-        }
-        res.render('sett4', { data })
-    }).catch((err) => {
-        console.log(err)
-    })
+    const data = req.data
+    const pending = req.pending
+    res.render('sett4', { data, pending })
 })
 
 router.post('/', upload.single('pf'), (req, res) => {

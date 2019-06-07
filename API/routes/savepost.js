@@ -14,6 +14,7 @@ const tmpstr = multer.diskStorage({
 const upload = multer({ storage: tmpstr })
 
 const Post = require('../models/post')
+const Profile = require('../models/profile')
 
 const check = (a) => {
     if (a === undefined) {
@@ -25,7 +26,59 @@ const check = (a) => {
     }
 }
 
-router.post('/', upload.single('img'), (req, res) => {
+router.post('/', upload.single('img'), async (req, res) => {
+    const id = req.uid
+    const { text, pid, like, comment } = req.body
+    if (check(pid)) {
+        const post = await Post.findById(pid)
+        if (check(like)) {
+            if (post.likes.indexOf(id) > -1) {
+                post.likes.pull(id)
+            } else {
+                post.likes.push(id)
+            }
+            await post.save()
+            return res.json({ "msg": "success" })
+        }
+    } else if (check(text) || req.file) {
+        const data = await Profile.findById(id)
+        const p = new Post({
+            pown: id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+        })
+        if (data.minimage.data) {
+            p.minimage = data.minimage
+        }
+        if (check(text)) {
+            p.text = text.trim()
+        }
+        if (req.file) {
+            p.image.contentType = req.file.mimetype
+            p.image.data = fs.readFileSync(req.file.path)
+            fs.unlinkSync(req.file.path)
+        }
+        await p.save()
+        tmp = p
+        if (tmp.minimage.data) {
+            img1 = tmp.minimage.data.toString('base64')
+        }
+        if (tmp.image.data) {
+            img2 = tmp.image.data.toString('base64')
+        }
+        tmp = tmp.toJSON()
+        if (tmp.minimage) {
+            tmp.minimage.data = img1
+        }
+        if (tmp.image) {
+            tmp.image.data = img2
+        }
+        return res.json({ "msg": "New Post Created!", "post": tmp })
+    } else {
+        return res.json({ "msg": "invalid" })
+    }
+})
+/* router.post('/', upload.single('img'), (req, res) => {
     const id = req.uid
     const { text, pid, like, comment } = req.body
 
@@ -129,6 +182,6 @@ router.post('/', upload.single('img'), (req, res) => {
     } else {
         res.json({ "msg": "Invalid" })
     }
-})
+}) */
 
 module.exports = router

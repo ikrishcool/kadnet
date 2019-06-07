@@ -1,0 +1,30 @@
+li.post
+    .header
+        .item
+            a.dp(href="profile/" + p.own)
+                if (p.minimage)
+                    img(src="data:" + p.minimage.contentType + ";base64," + p.minimage.data)
+                else
+                    img(src="/images/bdp.png")
+        .item
+            a(href="profile/" + p.own) #{p.firstName} #{p.lastName}
+            span.time1(livestamp=p.updatedAt)
+    .body
+        if (p.text)
+            .item=p.text
+        if (p.image)
+            .item
+                img(src="data:" + p.image.contentType + ";base64," + p.image.data)
+    .footer
+        .item
+            span
+                i.material-icons favorite_border
+                | #{p.likes.length} hearts
+        .item
+            span
+                i.material-icons insert_comment
+                | 2 Comments
+        .item
+            span
+                i.material-icons share
+                | Share Post

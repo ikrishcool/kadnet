@@ -1,42 +1,24 @@
 const express = require('express')
 const fetch = require('node-fetch')
-const router = express.Router();
+const router = express.Router()
 
 
 router.get('/', async (req, res) => {
-    const data = await fetch(res.locals.uri + 'getinfo', {
+    const data = req.data
+    const pending = req.pending
+    let posts = await fetch(res.locals.uri + 'getpost/all', {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + req.session.token
         }
     }).then(res => res.json())
-    if (data.msg) {
-        return res.redirect('logout')
-    }
-    let pending = []
-    const received = data.friends.received.reverse()
-    for (i = 0; i < received.length && i < 3; i++) {
-        p = new URLSearchParams()
-        p.append('uid', received[i])
-        const f = await fetch(res.locals.uri + 'getinfo/mininfo/', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + req.session.token
-            },
-            body: p
-        }).then(res => res.json())
-        let c = 0
-        for (a = 0; a < data.friends.accepted.length; a++) {
-            for (b = 0; b < f.friends.accepted.length; b++) {
-                if (data.friends.accepted[a] === f.friends.accepted[b]) {
-                    c += 1
-                }
-            }
+    for (i = 0; i < posts.length; i++) {
+        posts[i].likestate = false
+        if (posts[i].likes.indexOf(req.data._id) > -1) {
+            posts[i].likestate = true
         }
-        f.mutual = c
-        pending.push(f)
     }
-    res.render('feed', { data, pending })
+    res.render('feed', { data, pending, posts })
 })
 
 module.exports = router

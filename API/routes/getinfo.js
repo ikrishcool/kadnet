@@ -86,7 +86,8 @@ router.post('/mininfo', async (req, res) => {
     let uid = req.body.uid
     const data = await Profile.findById(uid)
     let user = {}
-    if (data.minimage) {
+    user.id = data._id
+    if (data.minimage.data) {
         let i = {}
         i.data = data.minimage.data.toString('base64')
         i.contentType = data.minimage.contentType
@@ -108,13 +109,14 @@ router.post('/friends', async (req, res) => {
     let uid = req.body.uid
     const data = await Profile.findById(uid)
     let user = {}
-    if (data.image) {
+    user._id = data._id
+    if (data.image.data) {
         let i = {}
         i.data = data.image.data.toString('base64')
         i.contentType = data.image.contentType
         user.image = i
     }
-    if (data.coverpic) {
+    if (data.coverpic.data) {
         let i = {}
         i.data = data.coverpic.data.toString('base64')
         i.contentType = data.coverpic.contentType
@@ -130,6 +132,47 @@ router.post('/friends', async (req, res) => {
     user.lastName = data.lastName
     user.friends = data.friends
     res.json(user)
+})
+
+router.post('/search', async (req, res) => {
+    const id = req.uid
+    const s = req.body.st.toLowerCase().trim()
+    const result = []
+    const data = await Profile.find()
+    for (x = 0; x < data.length; x++) {
+        const uid = data[x]._id
+        if (id != uid) {
+            fn = data[x].firstName.toLowerCase()
+            ln = data[x].lastName.toLowerCase()
+            if (fn.indexOf(s) > -1 || ln.indexOf(s) > -1) {
+                let user = {}
+                user._id = data[x]._id
+                if (data[x].image.data) {
+                    let i = {}
+                    i.data = data[x].image.data.toString('base64')
+                    i.contentType = data[x].image.contentType
+                    user.image = i
+                }
+                if (data[x].coverpic.data) {
+                    let i = {}
+                    i.data = data[x].coverpic.data.toString('base64')
+                    i.contentType = data[x].coverpic.contentType
+                    user.coverpic = i
+                }
+                if (data[x].userName) {
+                    user.userName = data[x].userName
+                }
+                else {
+                    user.userName = data[x]._id
+                }
+                user.firstName = data[x].firstName
+                user.lastName = data[x].lastName
+                user.friends = data[x].friends
+                result.push(user)
+            }
+        }
+    }
+    return res.json(result)
 })
 
 module.exports = router
